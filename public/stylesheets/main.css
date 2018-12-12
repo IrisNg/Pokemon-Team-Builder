@@ -1,0 +1,20 @@
+.ui.card {
+    width: 130px;
+    height: 150px;
+    display: inline-block;
+    margin: 5px;
+   
+}
+
+.description {
+    
+    border-top: 0.5px solid #c2c2c2ea;
+    font-size : 9pt;
+    font-weight : bold;
+    line-height: 20px;
+    letter-spacing: 0.06em;
+}
+.ui.container{
+    padding-top: 50px;
+    text-align: center;
+}

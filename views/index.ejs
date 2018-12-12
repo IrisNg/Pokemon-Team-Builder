@@ -1,0 +1,18 @@
+<% include ./partials/header %>
+
+<div class="ui container">
+<% pokedex.forEach(function (pokemon){ %>
+    <div class="ui card">
+        <div class="image">
+            <img src="<%= pokemon.image %>">
+        </div>
+        <div class="description">#<%= pokemon.id %> <%= pokemon.name %></div>
+    </div>
+<% }) %>
+</div>
+
+
+
+
+
+<% include ./partials/footer %>
