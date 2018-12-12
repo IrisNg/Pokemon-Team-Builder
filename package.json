@@ -1,0 +1,25 @@
+{
+  "name": "pokemon_team",
+  "version": "1.0.0",
+  "description": "Pokemon Team Builder - Identify your Dream Pokemon Team's Strengths & Weaknesses",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "pokemon",
+    "team",
+    "builder",
+    "types",
+    "strength",
+    "weakness",
+    "calculator"
+  ],
+  "author": "Iris Ng",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.16"
+  }
+}
