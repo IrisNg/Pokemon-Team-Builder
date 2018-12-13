@@ -1,18 +1,107 @@
 <% include ./partials/header %>
 
 <div class="ui container">
-<% pokedex.forEach(function (pokemon){ %>
-    <div class="ui card">
-        <div class="image">
-            <img src="<%= pokemon.image %>">
+
+    <div class="ui six column doubling grid team">
+        <!-- Creating chosen pokemon team's thumbnails -->
+        <% for(var i=0; i<=5; i++){ %>
+        <div class="column">
+            <div class="ui card chosen">
+                <div class="image">
+                    <img src="https://pm1.narvii.com/6508/dbd421799e1fc9118c02766e5c13836c87db6070_hq.jpg" >
+                </div>
+                <div class="description">
+                    <i class="available"></i>
+                </div>
+            </div>
         </div>
-        <div class="description">#<%= pokemon.id %> <%= pokemon.name %></div>
+        <% } %>
     </div>
-<% }) %>
+
+    <div class="ui ten column doubling centered grid thumbnails">
+        <!-- Creating ALL pokemon thumbnails -->
+        <% pokedex.forEach( pokemon => { %>
+            <div class="center aligned column">
+                <div class="ui card thumbnail">
+                    <div class="image">
+                        <img src="<%= pokemon.image %>">
+                    </div>
+                    <div class="description">
+                        #<span><%= pokemon.id %></span> 
+                        <div class="pokemon-name"><%= pokemon.name %></div>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
 </div>
 
+<script>
+    //Converting ejs variable to js variable
+    var pokedex = <%-JSON.stringify(pokedex)%>;
+    //Empty array that will contain the IDs of the pokemons picked by the user (max 6)
+    var selectedPokemons = [];
+    //Empty array that will contain the entries of the pokemons picked by the user
+    var team;
 
+    //Function that turns the array of IDs (selectedPokemons) to an array of selected Pokemons' entries (team)
+    function convertToEntry(){
+        team = selectedPokemons.map(selected => {
+            //Finding the pokemon entry from the pokedex based on the Id in the selectedPokemon array
+            //Because the Id in the selectedPokemon array is a string, it has to be parsed into Number
+            return pokedex.find(pokemon => pokemon.id === parseInt(selected, 10));
+        });
+    }
+    var url = "https://pm1.narvii.com/6508/dbd421799e1fc9118c02766e5c13836c87db6070_hq.jpg";
+    function teamThumbnail(i){
+        //Remove this pokemon from the selectedPokemons array
+        selectedPokemons[i] = null;
+        //Update the team's pokemon entries to reflect this removal
+        convertToEntry();
+        //test
+        console.log(selectedPokemons);
+        console.log(team);
 
+        $(`.team .available:eq(${i})`).toggleClass( "close icon" );
+        $(`.team .description:eq(${i})`).text("");
+        $(`.team img:eq(${i})`).attr('src', "https://pm1.narvii.com/6508/dbd421799e1fc9118c02766e5c13836c87db6070_hq.jpg");
+        
+        
+    }
+    
+    for (var i=0; i<6; i++){ 
+    $(`.team .available:eq(${i})`).click( teamThumbnail.bind(null,i) );
+    } 
 
+    //Adding eventlisteners to each pokemon thumbnail so that we know which pokemon gets picked by user
+    $(".thumbnails .thumbnail").click( function() {
+        if (selectedPokemons.length < 6) {
+            //Overwriting the context of "this"
+            //Id of the chosen pokemon will be added to the selectedPokemon array
+            selectedPokemons.push($("span", this).text());
+            //testing
+            console.log(selectedPokemons);
+        }
+        var emptySlot = selectedPokemons.indexOf(null);
+        if (  emptySlot > -1 ) {
+            selectedPokemons[emptySlot] = $("span", this).text();
+        }
+
+        //Turn the array of IDs to an array of selected Pokemons' entries
+        convertToEntry();
+        
+        for (var i=0; i<6; i++){ 
+            if(team[i]){ 
+                //Add image for each team member 
+                $(`.team img:eq(${i})`).attr("src", team[i].image );
+                //Add description and closing icon to each team member's thumbnail 
+                $(`.team .description:eq(${i})`).text(`#${team[i].id} ${team[i].name}`);  
+                //Add eventListener to each closing icon that will remove said team member when clicked 
+                $(`.team .available:eq(${i})`).toggleClass( "close icon" );
+            } 
+        }
+        console.log(team);
+    });
+</script>
 
 <% include ./partials/footer %>

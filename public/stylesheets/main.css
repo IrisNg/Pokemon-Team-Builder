@@ -1,20 +1,43 @@
-.ui.card {
-    width: 130px;
-    height: 150px;
+.thumbnails .ui.card {
     display: inline-block;
-    margin: 5px;
-   
 }
 
+.not-available{
+    display:none;
+}
+
+.ui.card.chosen{
+    display: inline-block;
+    border: 2px solid black;
+}
 .description {
     
     border-top: 0.5px solid #c2c2c2ea;
-    font-size : 9pt;
-    font-weight : bold;
-    line-height: 20px;
-    letter-spacing: 0.06em;
+    font-size : 0.79em;
+    font-weight : 600;
+    letter-spacing: 0.007em;
+    line-height:17px;
+}
+
+.pokemon-name{
+    margin-top:-3px;
+    font-weight: normal;
 }
 .ui.container{
     padding-top: 50px;
-    text-align: center;
 }
+
+.close.icon{
+    float: right;
+}
+
+.ui.grid.thumbnails>.column:not(.row){
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+}
+
+.chosen .description {
+    text-align: left;
+    padding-left:10px;
+}
+
