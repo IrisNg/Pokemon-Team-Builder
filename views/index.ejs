@@ -11,7 +11,12 @@
             </div>
             <div class="description"></div>
          </div>
-         <div class="stats"></div>
+         <div class="types">
+            <div class="type-one"></div>
+            <div class="type-two"></div>
+         </div>
+
+         <div class="super-effective"></div>
       </div>
       <% } %>
    </div>
@@ -33,95 +38,133 @@
 </div>
 
 <script type="text/javascript">
-      //Converting ejs variable to js variable
-      var pokedex = <%- JSON.stringify(pokedex) %>;
-      var types = <%- JSON.stringify(types) %>;
-      //Empty array that will contain the IDs of the pokemons picked by the user (max 6)
-      var selectedPokemons = [];
-      //Empty array that will contain the entries of the pokemons picked by the user
-      var team;
+   //Converting ejs variable to js variable
+   var pokedex = <%- JSON.stringify(pokedex) %>;
+   var types = <%- JSON.stringify(types) %>;
+   //Empty array that will contain the IDs of the pokemons picked by the user (max 6)
+   var selectedPokemons = [];
+   //Empty array that will contain the entries of the pokemons picked by the user
+   var team;
 
-   var collectiveTypes = [];
-   var collectiveTypesEntries = [];
+   var teamTypes = [];
+   var teamTypesEntries = [];
 
+
+   function convertToEntry() {
       //Turn the array of IDs (selectedPokemons) to an array of selected Pokemons' entries (team)
-      function convertToEntry() {
-         team = selectedPokemons.map(selected => {
-            //Finding the pokemon entry from the pokedex based on the Id in the selectedPokemon array
-            //Because the Id in the selectedPokemon array is a string, it has to be parsed into Number
-            return pokedex.find(pokemon => pokemon.id === parseInt(selected, 10));
-         });
+      team = selectedPokemons.map(selected => {
+         //Finding the pokemon entry from the pokedex based on the Id in the selectedPokemon array
+         //Because the Id in the selectedPokemon array is a string, it has to be parsed into Number
+         return pokedex.find(pokemon => pokemon.id === parseInt(selected, 10));
+      });
+
+      //Making a collective array of all selected pokemons' types
+      teamTypes = team.map(function(pokemon){
+         if (!pokemon){
+            return null
+         }
+         return {
+            type1: pokemon.types.type1,
+            type2: pokemon.types.type2
+         }
+      });
+      //Turning this collective array of selected pokemons' types into full entries
+      teamTypesEntries = teamTypes.map(function(pokemon){
+         if(!pokemon){
+            return null
+         }
+         return {
+            type1: types.find(function(type){
+               return type.name === pokemon.type1;
+            }),
+            type2: types.find(function(type){
+               return type.name === pokemon.type2;
+            })
+         }
+      });
+
+      //test
+      console.log(teamTypes);
+      console.log(teamTypesEntries);
+   }
+
+   //Make the selected pokemons show up as thumbnails
+   function addMember(){
+      for (var i = 0; i < 6; i++) {
+         if (selectedPokemons[i]) {
+            //Add description and closing icon to each team member's thumbnail
+            $(`.chosen:eq(${i}) .description`).html(`#${team[i].id} ${team[i].name} <i class="close icon"></i>`);
+            //Add image for each team member
+            $(`.chosen:eq(${i}) img`).attr('src', team[i].image);
+            //Add eventListener to each existing closing icon that will remove said team member when clicked
+            $(`.chosen:eq(${i}) .close.icon`).click(removeMember.bind(null, i));
+
+            //Adding type icons to the team member's thumbnail
+            $(`.type-one:eq(${i})`).html(`<img src="${teamTypesEntries[i].type1.icon}" />`);
+            if(teamTypes[i].type2){
+               $(`.type-two:eq(${i})`).html(`<img src="${teamTypesEntries[i].type2.icon}" />`);
+            }
+            //Finding the respective super-effective type icon's url and chaining them together
+            var SEicons = [{ number: "type1", imgTags: "" },{ number: "type2", imgTags: "" }];
+
+            for(var n=0; n<2; n++){
+               if(teamTypesEntries[i][SEicons[n].number]){
+                  teamTypesEntries[i][SEicons[n].number].superEffective.forEach( SEtype => {
+                     SEicons[n].imgTags = SEicons[n].imgTags.concat(`<img src="${types.find( type=> type.name === SEtype ).icon}" />`);
+                  });
+                  console.log(SEicons[n]);
+
+               }
+            }
+            $(`.super-effective:eq(${i})`).html(`<div>${SEicons[0].imgTags}</div><div>${SEicons[1].imgTags}</div>`);
+
+         }
       }
+   }
+
+   //Callback attached to closing icon's event listener that will remove selected pokemon from team
+   function removeMember(index) {
+      //Remove this pokemon from the selectedPokemons array according to the index passed in
+      //Retain the indexes of other remaining team members using null
+      selectedPokemons[index] = null;
+      //Update the team's pokemon entries to reflect this removal
+      convertToEntry();
+      //Remove this team pokemon's closing icon and its eventListener
+      $(`.chosen:eq(${index}) .close.icon`).remove();
+      //Remove this team pokemon's name
+      $(`.chosen:eq(${index}) .description`).html('');
+      //Change back this team pokemon's image to the default
+      $(`.chosen:eq(${index}) img`).attr(
+         'src',
+         'https://pm1.narvii.com/6508/dbd421799e1fc9118c02766e5c13836c87db6070_hq.jpg'
+      );
+      $(`.stats:eq(${index}), .type-one:eq(${index}), .type-two:eq(${index})`).html("");
+
+   }
+
+   //Adding eventlisteners to each pokemon thumbnail so that we know which pokemon gets picked by user
+   $('.thumbnail').click(function() {
+
+      if (selectedPokemons.length < 6) {
+         //Overwriting the context of "this"
+         //Id of the chosen pokemon will be added to the selectedPokemon array if it is not full
+         selectedPokemons.push($('span', this).text());
+         //testing
+      }
+      //Slot in the newly selected pokemon's id into the existing array if there is an empty spot
+      var emptySlot = selectedPokemons.indexOf(null);
+      if (emptySlot > -1) {
+         selectedPokemons[emptySlot] = $('span', this).text();
+      }
+
+      //Turn the array of IDs to an array of selected Pokemons' entries
+      convertToEntry();
+
+
 
       //Make the selected pokemons show up as thumbnails
-      function addMember(){
-         for (var i = 0; i < 6; i++) {
-            if (selectedPokemons[i]) {
-               //Add description and closing icon to each team member's thumbnail
-               $(`.chosen:eq(${i}) .description`).html(`#${team[i].id} ${team[i].name} <i class="close icon"></i>`);
-               //Add image for each team member
-               $(`.chosen:eq(${i}) img`).attr('src', team[i].image);
-               //Add eventListener to each existing closing icon that will remove said team member when clicked
-               $(`.chosen:eq(${i}) .close.icon`).click(removeMember.bind(null, i));
-
-         //       collectiveTypesEntries = types.find(function(type){
-         //    return type.name===collectiveTypes[i].type1
-         // })
-
-               $(`.stats:eq(${i})`).html(`<img src="${types[1].icon}" /><img src="${types[3].icon}"/>`);
-            }
-         }
-      }
-
-      //Callback attached to closing icon's event listener that will remove selected pokemon from team
-      function removeMember(index) {
-         //Remove this pokemon from the selectedPokemons array according to the index passed in
-         //Retain the indexes of other remaining team members using null
-         selectedPokemons[index] = null;
-         //Update the team's pokemon entries to reflect this removal
-         convertToEntry();
-         //Remove this team pokemon's closing icon and its eventListener
-         $(`.chosen:eq(${index}) .close.icon`).remove();
-         //Remove this team pokemon's name
-         $(`.chosen:eq(${index}) .description`).html('');
-         //Change back this team pokemon's image to the default
-         $(`.chosen:eq(${index}) img`).attr(
-            'src',
-            'https://pm1.narvii.com/6508/dbd421799e1fc9118c02766e5c13836c87db6070_hq.jpg'
-         );
-         $(`.stats:eq(${index})`).html("");
-      }
-
-      //Adding eventlisteners to each pokemon thumbnail so that we know which pokemon gets picked by user
-      $('.thumbnail').click(function() {
-
-         if (selectedPokemons.length < 6) {
-            //Overwriting the context of "this"
-            //Id of the chosen pokemon will be added to the selectedPokemon array if it is not full
-            selectedPokemons.push($('span', this).text());
-            //testing
-         }
-         //Slot in the newly selected pokemon's id into the existing array if there is an empty spot
-         var emptySlot = selectedPokemons.indexOf(null);
-         if (emptySlot > -1) {
-            selectedPokemons[emptySlot] = $('span', this).text();
-         }
-
-         //Turn the array of IDs to an array of selected Pokemons' entries
-         convertToEntry();
-
-         collectiveTypes = team.map(function(pokemon){
-            return {type1: pokemon.types.type1, type2: pokemon.types.type2};
-         });
-
-
-
-
-         console.log(collectiveTypes);
-
-         //Make the selected pokemons show up as thumbnails
-         addMember();
-      });
+      addMember();
+   });
 </script>
 
 <% include ./partials/footer %>

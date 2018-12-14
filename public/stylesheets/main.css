@@ -40,3 +40,8 @@
    width: 50px;
    margin: auto 10px;
 }
+
+.type-one,
+.type-two {
+   display: inline;
+}

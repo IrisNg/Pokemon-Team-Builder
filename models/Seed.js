@@ -1,130 +1,130 @@
 module.exports = {
    types: [
       {
-         name: 'NORMAL',
+         name: 'normal',
          icon: 'https://i.imgur.com/T8MOm7P.png',
          superEffective: [],
-         notEffective: ['ROCK', 'STEEL'],
-         noEffect: ['GHOST']
+         notEffective: ['rock', 'steel'],
+         noEffect: ['ghost']
       },
       {
-         name: 'FIGHTING',
+         name: 'fighting',
          icon: 'https://i.imgur.com/Pr97GQ1.png',
-         superEffective: ['NORMAL', 'ROCK', 'STEEL', 'ICE', 'DARK'],
-         notEffective: ['FLYING', 'POISON', 'BUG', 'PSYCHIC', 'FAIRY'],
-         noEffect: ['GHOST']
+         superEffective: ['normal', 'rock', 'steel', 'ice', 'dark'],
+         notEffective: ['flying', 'poison', 'bug', 'psychic', 'fairy'],
+         noEffect: ['ghost']
       },
       {
-         name: 'FLYING',
+         name: 'flying',
          icon: 'https://i.imgur.com/ZO54bmh.png',
-         superEffective: ['FIGHTING', 'BUG', 'GRASS'],
-         notEffective: ['ROCK', 'STEEL', 'ELECTRIC'],
+         superEffective: ['fighting', 'bug', 'grass'],
+         notEffective: ['rock', 'steel', 'electric'],
          noEffect: []
       },
       {
-         name: 'POISON',
+         name: 'poison',
          icon: 'https://i.imgur.com/Hh7FDun.png',
-         superEffective: ['GRASS', 'FAIRY'],
-         notEffective: ['POISON', 'GROUND', 'ROCK', 'GHOST'],
-         noEffect: ['STEEL']
+         superEffective: ['grass', 'fairy'],
+         notEffective: ['poison', 'ground', 'rock', 'ghost'],
+         noEffect: ['steel']
       },
       {
-         name: 'GROUND',
+         name: 'ground',
          icon: 'https://i.imgur.com/Z8AVJ4a.png',
-         superEffective: ['POISON', 'ROCK', 'STEEL', 'FIRE', 'ELECTRIC'],
-         notEffective: ['BUG', 'GRASS'],
-         noEffect: ['FLYING']
+         superEffective: ['poison', 'rock', 'steel', 'fire', 'electric'],
+         notEffective: ['bug', 'grass'],
+         noEffect: ['flying']
       },
       {
-         name: 'ROCK',
+         name: 'rock',
          icon: 'https://i.imgur.com/8fuHs1C.png',
-         superEffective: ['FLYING', 'BUG', 'FIRE', 'ICE'],
-         notEffective: ['FIGHTING', 'GROUND', 'STEEL'],
+         superEffective: ['flying', 'bug', 'fire', 'ice'],
+         notEffective: ['fighting', 'ground', 'steel'],
          noEffect: []
       },
       {
-         name: 'BUG',
+         name: 'bug',
          icon: 'https://i.imgur.com/kpru1Y8.png',
-         superEffective: ['GRASS', 'PSYCHIC', 'DARK'],
-         notEffective: ['FIGHTING', 'FLYING', 'POISON', 'GHOST', 'STEEL', 'FIRE', 'FAIRY'],
+         superEffective: ['grass', 'psychic', 'dark'],
+         notEffective: ['fighting', 'flying', 'poison', 'ghost', 'steel', 'fire', 'fairy'],
          noEffect: []
       },
       {
-         name: 'GHOST',
+         name: 'ghost',
          icon: 'https://i.imgur.com/UroikHx.png',
-         superEffective: ['GHOST', 'PSYCHIC'],
-         notEffective: ['DARK'],
-         noEffect: ['NORMAL']
+         superEffective: ['ghost', 'psychic'],
+         notEffective: ['dark'],
+         noEffect: ['normal']
       },
       {
-         name: 'STEEL',
+         name: 'steel',
          icon: 'https://i.imgur.com/lmN1qDy.png',
-         superEffective: ['ROCK', 'ICE', 'FAIRY'],
-         notEffective: ['STEEL', 'FIRE', 'WATER', 'ELECTRIC'],
+         superEffective: ['rock', 'ice', 'fairy'],
+         notEffective: ['steel', 'fire', 'water', 'electric'],
          noEffect: []
       },
       {
-         name: 'FIRE',
+         name: 'fire',
          icon: 'https://i.imgur.com/ChmQPRq.png',
-         superEffective: ['BUG', 'STEEL', 'GRASS', 'ICE'],
-         notEffective: ['ROCK', 'FIRE', 'WATER', 'DRAGON'],
+         superEffective: ['bug', 'steel', 'grass', 'ice'],
+         notEffective: ['rock', 'fire', 'water', 'dragon'],
          noEffect: []
       },
       {
-         name: 'WATER',
+         name: 'water',
          icon: 'https://i.imgur.com/OYx24YT.png',
-         superEffective: ['GROUND', 'ROCK', 'FIRE'],
-         notEffective: ['WATER', 'GRASS', 'DRAGON'],
+         superEffective: ['ground', 'rock', 'fire'],
+         notEffective: ['water', 'grass', 'dragon'],
          noEffect: []
       },
       {
-         name: 'GRASS',
+         name: 'grass',
          icon: 'https://i.imgur.com/h0mdNN0.png',
-         superEffective: ['GROUND', 'ROCK', 'WATER'],
-         notEffective: ['FLYING', 'POISON', 'BUG', 'STEEL', 'FIRE', 'GRASS', 'DRAGON'],
+         superEffective: ['ground', 'rock', 'water'],
+         notEffective: ['flying', 'poison', 'bug', 'steel', 'fire', 'grass', 'dragon'],
          noEffect: []
       },
       {
-         name: 'ELECTRIC',
+         name: 'electric',
          icon: 'https://i.imgur.com/nZbIwgv.png',
-         superEffective: ['FLYING', 'WATER'],
-         notEffective: ['GRASS', 'ELECTRIC', 'DRAGON'],
-         noEffect: ['GROUND']
+         superEffective: ['flying', 'water'],
+         notEffective: ['grass', 'electric', 'dragon'],
+         noEffect: ['ground']
       },
       {
-         name: 'PSYCHIC',
+         name: 'psychic',
          icon: 'https://i.imgur.com/b7EgqXU.png',
-         superEffective: ['FIGHTING', 'POISON'],
-         notEffective: ['STEEL', 'PSYCHIC'],
-         noEffect: ['DARK']
+         superEffective: ['fighting', 'poison'],
+         notEffective: ['steel', 'psychic'],
+         noEffect: ['dark']
       },
       {
-         name: 'ICE',
+         name: 'ice',
          icon: 'https://i.imgur.com/Adij2NC.png',
-         superEffective: ['FLYING', 'GROUND', 'GRASS', 'DRAGON'],
-         notEffective: ['STEEL', 'FIRE', 'WATER', 'ICE'],
+         superEffective: ['flying', 'ground', 'grass', 'dragon'],
+         notEffective: ['steel', 'fire', 'water', 'ice'],
          noEffect: []
       },
       {
-         name: 'DRAGON',
+         name: 'dragon',
          icon: 'https://i.imgur.com/bLtGPBd.png',
-         superEffective: ['DRAGON'],
-         notEffective: ['STEEL'],
-         noEffect: ['FAIRY']
+         superEffective: ['dragon'],
+         notEffective: ['steel'],
+         noEffect: ['fairy']
       },
       {
-         name: 'DARK',
+         name: 'dark',
          icon: 'https://i.imgur.com/WKe2jzh.png',
-         superEffective: ['GHOST', 'PSYCHIC'],
-         notEffective: ['FIGHTING', 'DARK', 'FAIRY'],
+         superEffective: ['ghost', 'psychic'],
+         notEffective: ['fighting', 'dark', 'fairy'],
          noEffect: []
       },
       {
-         name: 'FAIRY',
+         name: 'fairy',
          icon: 'https://i.imgur.com/39kDaMO.png',
-         superEffective: ['FIGHTING'],
-         notEffective: ['POISON', 'STEEL', 'FIRE'],
-         noEffect: ['DRAGON', 'DARK']
+         superEffective: ['fighting'],
+         notEffective: ['poison', 'steel', 'fire'],
+         noEffect: ['dragon', 'dark']
       }
    ]
 };
