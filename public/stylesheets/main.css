@@ -1,43 +1,39 @@
 .thumbnails .ui.card {
-    display: inline-block;
+   display: inline-block;
 }
 
-.not-available{
-    display:none;
-}
 
-.ui.card.chosen{
-    display: inline-block;
-    border: 2px solid black;
+
+.ui.card.chosen {
+   display: inline-block;
+   border: 2px solid black;
 }
 .description {
-    
-    border-top: 0.5px solid #c2c2c2ea;
-    font-size : 0.79em;
-    font-weight : 600;
-    letter-spacing: 0.007em;
-    line-height:17px;
+   border-top: 0.5px solid #c2c2c2ea;
+   font-size: 0.79em;
+   font-weight: 600;
+   letter-spacing: 0.007em;
+   line-height: 17px;
 }
 
-.pokemon-name{
-    margin-top:-3px;
-    font-weight: normal;
+.pokemon-name {
+   margin-top: -3px;
+   font-weight: normal;
 }
-.ui.container{
-    padding-top: 50px;
-}
-
-.close.icon{
-    float: right;
+.ui.container {
+   padding-top: 50px;
 }
 
-.ui.grid.thumbnails>.column:not(.row){
-    padding-left: 0.2rem;
-    padding-right: 0.2rem;
+.close.icon {
+   float: right;
+}
+
+.ui.grid.thumbnails > .column:not(.row) {
+   padding-left: 0.2rem;
+   padding-right: 0.2rem;
 }
 
 .chosen .description {
-    text-align: left;
-    padding-left:10px;
+   text-align: left;
+   padding-left: 10px;
 }
-
