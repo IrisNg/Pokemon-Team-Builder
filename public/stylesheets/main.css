@@ -1,12 +1,68 @@
+/* .column {
+   border: 0.1px black solid;
+} */
+
+.two.column.ui.grid .team.column:nth-child(odd) {
+   padding: 0 2px 1rem 0;
+}
+
+.two.column.ui.grid .team.column:nth-child(even) {
+   padding: 0 0 1rem 2px;
+}
+.team-member.ui.grid> .column:not(.row) {
+   padding: 0.5em;
+}
+
+.team p {
+   font-size: 0.7em;
+}
+
+.team-member.ui.grid .row {
+   padding-top: 0px;
+   padding-bottom: 0.5em;
+}
+.team-member.ui.grid .row:nth-child(even) {
+   padding-bottom: 0.1em;
+}
+
+/* .team-member.ui.grid .row div.column {
+   padding-left: 0.5em;
+} */
+
+.ui.grid.details>.row .column:nth-child(2){
+   padding-left: 0;
+}
+
+.details {
+   color: white;
+}
+/* .details .row:not(.main) .column {
+   height: 12px;
+} */
+.type-one,
+.type-two {
+   text-align:center;
+   margin-top: 1em;
+   border: 1px solid white;
+   border-radius: 3px;
+   background-color: white;
+}
+
+h5 {
+   font-size: 0.85em;
+   padding-left: 14px;
+}
 .thumbnails .ui.card {
    display: inline-block;
 }
-
+.ui.segment {
+   width: 100%;
+}
 .ui.card.chosen {
    display: inline-block;
    border: 2px solid black;
 }
-.description {
+.thumbnail .description {
    border-top: 0.5px solid #c2c2c2ea;
    font-size: 0.79em;
    font-weight: 600;
@@ -34,14 +90,6 @@
 .chosen .description {
    text-align: left;
    padding-left: 10px;
-}
-
-.stats img {
-   width: 50px;
-   margin: auto 10px;
-}
-
-.type-one,
-.type-two {
-   display: inline;
+   font-size: 0.75em;
+   letter-spacing: 0.007em;
 }

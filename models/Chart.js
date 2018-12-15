@@ -5,6 +5,7 @@ var ChartSchema = new mongoose.Schema({
       {
          name: String,
          icon: String,
+         color: String,
          superEffective: [String],
          notEffective: [String],
          noEffect: [String]

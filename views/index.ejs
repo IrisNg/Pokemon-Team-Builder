@@ -1,26 +1,48 @@
 <% include ./partials/header %>
 
 <div class="ui container">
-   <div class="ui six column doubling grid team">
+   <div class="ui stackable two column grid">
       <!-- Creating chosen pokemon team's thumbnails -->
       <% for(var i=0; i<6; i++){ %>
-      <div class="center aligned column">
-         <div class="ui card chosen">
-            <div class="image">
-               <img src="https://pm1.narvii.com/6508/dbd421799e1fc9118c02766e5c13836c87db6070_hq.jpg" />
+      <div class="ui column team">
+         <div class="ui segment">
+            <div class="ui grid team-member">
+               <div class="center aligned five wide column">
+                  <div class="ui card chosen">
+                     <div class="image">
+                        <img src="https://pm1.narvii.com/6508/dbd421799e1fc9118c02766e5c13836c87db6070_hq.jpg" />
+                     </div>
+                     <div class="description"></div>
+                  </div>
+               </div>
+               <div class="eleven wide column">
+                  <div class="ui grid details">
+                     <div class="two column row main">
+                        <div class="column"><div class="type-one"></div></div>
+                        <div class="column"><div class="type-two"></div></div>
+                     </div>
+                     <div class="row"><h5 class="header super-effective"></h5></div>
+                     <div class="two column row">
+                        <div class="column"><p class="super-effective-one"></p></div>
+                        <div class="column"><p class="super-effective-two"></p></div>
+                     </div>
+                     <div class="row"><h5 class="header not-effective"></h5></div>
+                     <div class="two column row">
+                        <div class="column"><p class="not-effective-one"></p></div>
+                        <div class="column"><p class="not-effective-two"></p></div>
+                     </div>
+                     <div class="row"><h5 class="header no-effect"></h5></div>
+                     <div class="two column row">
+                        <div class="column"><p class="no-effect-one"></p></div>
+                        <div class="column"><p class="no-effect-two"></p></div>
+                     </div>
+                  </div>
+               </div>
             </div>
-            <div class="description"></div>
          </div>
-         <div class="types">
-            <div class="type-one"></div>
-            <div class="type-two"></div>
-         </div>
-
-         <div class="super-effective"></div>
       </div>
       <% } %>
    </div>
-
    <div class="ui ten column doubling centered grid thumbnails">
       <!-- Creating ALL pokemon thumbnails -->
       <% pokedex.forEach( pokemon => { %>
@@ -49,7 +71,6 @@
    var teamTypes = [];
    var teamTypesEntries = [];
 
-
    function convertToEntry() {
       //Turn the array of IDs (selectedPokemons) to an array of selected Pokemons' entries (team)
       team = selectedPokemons.map(selected => {
@@ -64,8 +85,8 @@
             return null
          }
          return {
-            type1: pokemon.types.type1,
-            type2: pokemon.types.type2
+            type1: pokemon.types.type1.toUpperCase(),
+            type2: pokemon.types.type2 ? pokemon.types.type2.toUpperCase() : null
          }
       });
       //Turning this collective array of selected pokemons' types into full entries
@@ -83,44 +104,63 @@
          }
       });
 
-      //test
-      console.log(teamTypes);
-      console.log(teamTypesEntries);
+      // //test
+      // console.log(teamTypes);
+      // console.log(teamTypesEntries);
    }
 
    //Make the selected pokemons show up as thumbnails
    function addMember(){
       for (var i = 0; i < 6; i++) {
+         //Per team member's thumbnail
          if (selectedPokemons[i]) {
-            //Add description and closing icon to each team member's thumbnail
-            $(`.chosen:eq(${i}) .description`).html(`#${team[i].id} ${team[i].name} <i class="close icon"></i>`);
-            //Add image for each team member
+            //Add description and closing icon
+            $(`.chosen:eq(${i}) .description`).html(`#${team[i].id} ${team[i].name}`);
+            $(`.chosen:eq(${i}) .description`).append("<i class='close icon'></i>");
+            //Add pokemon image
             $(`.chosen:eq(${i}) img`).attr('src', team[i].image);
             //Add eventListener to each existing closing icon that will remove said team member when clicked
             $(`.chosen:eq(${i}) .close.icon`).click(removeMember.bind(null, i));
 
-            //Adding type icons to the team member's thumbnail
-            $(`.type-one:eq(${i})`).html(`<img src="${teamTypesEntries[i].type1.icon}" />`);
+            //Adding type icons
+            $(`.type-one:eq(${i})`).html(teamTypesEntries[i].type1.name);
             if(teamTypes[i].type2){
-               $(`.type-two:eq(${i})`).html(`<img src="${teamTypesEntries[i].type2.icon}" />`);
+               $(`.type-two:eq(${i})`).html(teamTypesEntries[i].type2.name);
             }
-            //Finding the respective super-effective type icon's url and chaining them together
-            var SEicons = [{ number: "type1", imgTags: "" },{ number: "type2", imgTags: "" }];
 
-            for(var n=0; n<2; n++){
-               if(teamTypesEntries[i][SEicons[n].number]){
-                  teamTypesEntries[i][SEicons[n].number].superEffective.forEach( SEtype => {
-                     SEicons[n].imgTags = SEicons[n].imgTags.concat(`<img src="${types.find( type=> type.name === SEtype ).icon}" />`);
-                  });
-                  console.log(SEicons[n]);
-
-               }
+            //Adding super-effective icons
+            $(`.super-effective:eq(${i})`).text("super-effective against");
+            $(`.super-effective-one:eq(${i})`).text(teamTypesEntries[i].type1.superEffective.join(", "));
+            //Adding Not-very-effective icons
+            $(`.not-effective:eq(${i})`).text("not-very-effective against");
+            $(`.not-effective-one:eq(${i})`).text(teamTypesEntries[i].type1.notEffective.join(", "));
+            //Adding No-effect icons
+            $(`.no-effect:eq(${i})`).text("no-effect against");
+            $(`.no-effect-one:eq(${i})`).text(teamTypesEntries[i].type1.noEffect.join(", "));
+            //Same of type 2, if it exists
+            if(teamTypes[i].type2){
+               $(`.super-effective-two:eq(${i})`).text(teamTypesEntries[i].type2.superEffective.join(", "));
+               $(`.not-effective-two:eq(${i})`).text(teamTypesEntries[i].type2.notEffective.join(", "));
+               $(`.no-effect-two:eq(${i})`).text(teamTypesEntries[i].type2.noEffect.join(", "));
             }
-            $(`.super-effective:eq(${i})`).html(`<div>${SEicons[0].imgTags}</div><div>${SEicons[1].imgTags}</div>`);
+
+            if(!teamTypes[i].type2){
+               $(`.type-two`).css('border', 'none');
+            }
+
+            //Additional styling
+            $(`.chosen:eq(${i})`).css('border', 'none');
+            $(`.type-one:eq(${i}), .type-two:eq(${i})`).css('color', teamTypesEntries[i].type1.color);
+            if(teamTypes[i].type2){
+               $(`.type-two:eq(${i})`).css('color', teamTypesEntries[i].type2.color);
+               $(`.team:eq(${i}) .segment`).css({backgroundImage: `linear-gradient(to bottom right, ${teamTypesEntries[i].type1.color},${teamTypesEntries[i].type2.color})`, border: 'none'});
+            }
+            $(`.team:eq(${i}) .segment`).css({backgroundColor: teamTypesEntries[i].type1.color, border: 'none'});
 
          }
       }
    }
+
 
    //Callback attached to closing icon's event listener that will remove selected pokemon from team
    function removeMember(index) {
@@ -138,7 +178,7 @@
          'src',
          'https://pm1.narvii.com/6508/dbd421799e1fc9118c02766e5c13836c87db6070_hq.jpg'
       );
-      $(`.stats:eq(${index}), .type-one:eq(${index}), .type-two:eq(${index})`).html("");
+      // $(`.stats:eq(${index}), .type-one:eq(${index}), .type-two:eq(${index})`).html("");
 
    }
 
