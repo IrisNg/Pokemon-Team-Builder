@@ -177,6 +177,7 @@
          'https://pm1.narvii.com/6508/dbd421799e1fc9118c02766e5c13836c87db6070_hq.jpg'
       );
 
+      //Remove additional styling
       $(`.ui.grid.team-member:eq(${index}) .details`).find(".type-one,.type-two,h5,p").text("");
       $(`.team:eq(${index}) .ui.segment`).css({background: 'none', backgroundColor: 'white', border: '1px solid rgba(34, 36, 38, 0.15)'});
       $(`.chosen:eq(${index})`).css('border', '2px solid black');
