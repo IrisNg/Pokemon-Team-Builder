@@ -1,108 +1,108 @@
 module.exports = {
    normal: {
-      type: 'NORMAL',
+      typeName: 'NORMAL',
       superEffective: [],
       notEffective: [],
       noEffect: []
    },
    fighting: {
-      type: 'FIGHTING',
+      typeName: 'FIGHTING',
       superEffective: [],
       notEffective: [],
       noEffect: []
    },
    flying: {
-      type: 'FLYING',
+      typeName: 'FLYING',
       superEffective: [],
       notEffective: [],
       noEffect: []
    },
    poison: {
-      type: 'POISON',
+      typeName: 'POISON',
       superEffective: [],
       notEffective: [],
       noEffect: []
    },
    ground: {
-      type: 'GROUND',
+      typeName: 'GROUND',
       superEffective: [],
       notEffective: [],
       noEffect: []
    },
    rock: {
-      type: 'ROCK',
+      typeName: 'ROCK',
       superEffective: [],
       notEffective: [],
       noEffect: []
    },
    bug: {
-      type: 'BUG',
+      typeName: 'BUG',
       superEffective: [],
       notEffective: [],
       noEffect: []
    },
    ghost: {
-      type: 'GHOST',
+      typeName: 'GHOST',
       superEffective: [],
       notEffective: [],
       noEffect: []
    },
    steel: {
-      type: 'STEEL',
+      typeName: 'STEEL',
       superEffective: [],
       notEffective: [],
       noEffect: []
    },
    fire: {
-      type: 'FIRE',
+      typeName: 'FIRE',
       superEffective: [],
       notEffective: [],
       noEffect: []
    },
    water: {
-      type: 'WATER',
+      typeName: 'WATER',
       superEffective: [],
       notEffective: [],
       noEffect: []
    },
    grass: {
-      type: 'GRASS',
+      typeName: 'GRASS',
       superEffective: [],
       notEffective: [],
       noEffect: []
    },
    electric: {
-      type: 'ELECTRIC',
+      typeName: 'ELECTRIC',
       superEffective: [],
       notEffective: [],
       noEffect: []
    },
    psychic: {
-      type: 'PSYCHIC',
+      typeName: 'PSYCHIC',
       superEffective: [],
       notEffective: [],
       noEffect: []
    },
    ice: {
-      type: 'ICE',
+      typeName: 'ICE',
       superEffective: [],
       notEffective: [],
       noEffect: []
    },
    dragon: {
-      type: 'DRAGON',
+      typeName: 'DRAGON',
       superEffective: [],
       notEffective: [],
       noEffect: []
    },
    dark: {
-      type: 'DARK',
+      typeName: 'DARK',
       superEffective: [],
       notEffective: [],
       noEffect: []
    },
    fairy: {
-      type: 'FAIRY',
+      typeName: 'FAIRY',
       superEffective: [],
       notEffective: [],
       noEffect: []

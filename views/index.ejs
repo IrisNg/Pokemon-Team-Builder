@@ -63,6 +63,7 @@
    //Converting ejs variable to js variable
    var pokedex = <%- JSON.stringify(pokedex) %>;
    var types = <%- JSON.stringify(types) %>;
+   var tableProto = <%- JSON.stringify(table) %>;
    //Empty array that will contain the IDs of the pokemons picked by the user (max 6)
    var selectedPokemons = [];
    //Empty array that will contain the entries of the pokemons picked by the user
@@ -72,26 +73,6 @@
    //Empty array that will contain the entries of the pokemons' types
    var teamTypesEntries;
 
-   var tableProto = {
-      normal: { type: "NORMAL" },
-      fighting: { type: "FIGHTING" },
-      flying: { type: "FLYING" },
-      poison: { type: "POISON" },
-      ground: { type: "GROUND" },
-      rock: { type: "ROCK" },
-      bug: { type: "BUG" },
-      ghost: { type: "GHOST" },
-      steel: { type: "STEEL" },
-      fire: { type: "FIRE" },
-      water: { type: "WATER" },
-      grass: { type: "GRASS" },
-      electric: { type: "ELECTRIC" },
-      psychic: { type: "PSYCHIC" },
-      ice: { type: "ICE" },
-      dragon: { type: "DRAGON" },
-      dark: { type: "DARK" },
-      fairy: { type: "FAIRY" },
-   };
 
    function convertToEntry() {
       //Empty out previous arrays
@@ -130,6 +111,16 @@
             })
          }
       });
+
+      // // <!-- UNDER CONSTRUCTION SECTION -->
+      // for (var i = 0; i < 6; i++) {
+      //    if (selectedPokemons[i]) {
+      //       teamTypesEntries[i].type1.superEffective.forEach(function(SEtype){
+      //          tableProto[SEtype]["superEffective"].push(team[i].name);
+      //       });
+      //    }
+      // }
+      console.log(tableProto);
    }
 
    //Make the selected pokemons show up as thumbnails

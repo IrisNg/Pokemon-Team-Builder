@@ -2,109 +2,109 @@ var mongoose = require('mongoose');
 
 var TableSchema = new mongoose.Schema({
    normal: {
-      type: String,
+      typeName: String,
       superEffective: [String],
       notEffective: [String],
       noEffect: [String]
    },
    fighting: {
-      type: String,
+      typeName: String,
       superEffective: [String],
       notEffective: [String],
       noEffect: [String]
    },
    flying: {
-      type: String,
+      typeName: String,
       superEffective: [String],
       notEffective: [String],
       noEffect: [String]
    },
    poison: {
-      type: String,
+      typeName: String,
       superEffective: [String],
       notEffective: [String],
       noEffect: [String]
    },
    ground: {
-      type: String,
+      typeName: String,
       superEffective: [String],
       notEffective: [String],
       noEffect: [String]
    },
    rock: {
-      type: String,
+      typeName: String,
       superEffective: [String],
       notEffective: [String],
       noEffect: [String]
    },
    bug: {
-      type: String,
+      typeName: String,
       superEffective: [String],
       notEffective: [String],
       noEffect: [String]
    },
    ghost: {
-      type: String,
+      typeName: String,
       superEffective: [String],
       notEffective: [String],
       noEffect: [String]
    },
    steel: {
-      type: String,
+      typeName: String,
       superEffective: [String],
       notEffective: [String],
       noEffect: [String]
    },
    fire: {
-      type: String,
+      typeName: String,
       superEffective: [String],
       notEffective: [String],
       noEffect: [String]
    },
    water: {
-      type: String,
+      typeName: String,
       superEffective: [String],
       notEffective: [String],
       noEffect: [String]
    },
    grass: {
-      type: String,
+      typeName: String,
       superEffective: [String],
       notEffective: [String],
       noEffect: [String]
    },
    electric: {
-      type: String,
+      typeName: String,
       superEffective: [String],
       notEffective: [String],
       noEffect: [String]
    },
    psychic: {
-      type: String,
+      typeName: String,
       superEffective: [String],
       notEffective: [String],
       noEffect: [String]
    },
    ice: {
-      type: String,
+      typeName: String,
       superEffective: [String],
       notEffective: [String],
       noEffect: [String]
    },
    dragon: {
-      type: String,
+      typeName: String,
       superEffective: [String],
       notEffective: [String],
       noEffect: [String]
    },
    dark: {
-      type: String,
+      typeName: String,
       superEffective: [String],
       notEffective: [String],
       noEffect: [String]
    },
    fairy: {
-      type: String,
+      typeName: String,
       superEffective: [String],
       notEffective: [String],
       noEffect: [String]

@@ -3,7 +3,9 @@ var express = require('express'),
    mongoose = require('mongoose'),
    Pokedex = require('./models/Pokedex'),
    Chart = require('./models/Chart'),
-   typesSeed = require('./models/Seed');
+   typesSeed = require('./models/Seed'),
+   Table = require('./models/Table'),
+   tableSeed = require('./models/TableSeed');
 
 mongoose.connect(
    'mongodb://localhost:27017/pokemon_team_builder',
@@ -22,21 +24,26 @@ app.get('/team_builder', (req, res) => {
             if (err) {
                console.log(err);
             } else {
-               //destructuring the pokedex from the stored document
-               var { nationalPokedex } = foundPokedex[0];
-               //destructuring the types from the stored document
-               var { types } = foundChart[0];
-               //Converting the names of the pokemon to uppercase
-               nationalPokedex.forEach(pokemon => {
-                  pokemon.name = pokemon.name.toUpperCase();
+               Table.find({}, (err, foundTable) => {
+                  if (err) {
+                     console.log(err);
+                  } else {
+                     //destructuring the pokedex from the stored document
+                     var { nationalPokedex } = foundPokedex[0];
+                     //destructuring the types from the stored document
+                     var { types } = foundChart[0];
+                     //Converting the names of the pokemon to uppercase
+                     nationalPokedex.forEach(pokemon => {
+                        pokemon.name = pokemon.name.toUpperCase();
+                     });
+                     res.render('index', { pokedex: nationalPokedex, types: types, table: foundTable[0] });
+                  }
                });
-               res.render('index', { pokedex: nationalPokedex, types: types });
             }
          });
       }
    });
 });
-
 // app.get('/types/new', (req, res) => {
 //    Chart.create(typesSeed, (err, createdChart) => {
 //       if (err) {
@@ -54,6 +61,27 @@ app.get('/types', (req, res) => {
          console.log(err);
       } else {
          res.send(foundChart);
+      }
+   });
+});
+
+// app.get('/table/new', (req, res) => {
+//    Table.create(tableSeed, (err, createdTable) => {
+//       if (err) {
+//          console.log(err);
+//       } else {
+//          console.log(createdTable);
+//       }
+//    });
+//    res.send('making table');
+// });
+
+app.get('/table', (req, res) => {
+   Table.find({}, (err, foundTable) => {
+      if (err) {
+         console.log(err);
+      } else {
+         res.send(foundTable);
       }
    });
 });
