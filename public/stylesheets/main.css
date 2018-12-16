@@ -72,12 +72,15 @@ hr{
    text-align:center;
    margin-top: 1em;
    margin-bottom: 0.2em;
-   border: 1px solid white;
-   border-radius: 3px;
+  
    background-color: white;
    font-weight: 700;
    font-size: 1.2vw;
    line-height:1.05em;
+}
+.type-icon{
+border: 1px solid white;
+border-radius: 3px;
 }
 
 .effect h5 {
