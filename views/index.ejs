@@ -73,6 +73,12 @@
    var teamTypesEntries;
 
    function convertToEntry() {
+      //Empty out previous arrays
+      team=[];
+      teamTypes=[];
+      teamTypesEntries=[];
+
+
       //Turn the array of IDs (selectedPokemons) to an array of selected Pokemons' entries (team)
       team = selectedPokemons.map(selected => {
          //Finding the pokemon entry from the pokedex based on the Id in the selectedPokemon array
@@ -104,10 +110,6 @@
             })
          }
       });
-
-      // //test
-      // console.log(teamTypes);
-      // console.log(teamTypesEntries);
    }
 
    //Make the selected pokemons show up as thumbnails
@@ -116,7 +118,7 @@
          //Per team member's thumbnail
          if (selectedPokemons[i]) {
             //Add description and closing icon
-            $(`.chosen:eq(${i}) .description`).html(`<span>#${team[i].id}</span> ${team[i].name}`);
+            $(`.chosen:eq(${i}) .description`).html(`<strong>#${team[i].id}</strong> ${team[i].name}`);
             $(`.chosen:eq(${i}) .description`).append("<i class='close icon'></i>");
             //Add pokemon image
             $(`.chosen:eq(${i}) img`).attr('src', team[i].image);
@@ -146,6 +148,7 @@
             }
 
             //Additional styling
+            $(`.team:eq(${i}) .segment`).css({backgroundColor: teamTypesEntries[i].type1.color, border: 'none'});
             $(`.chosen:eq(${i})`).css('border', 'none');
             
             if(teamTypes[i].type2){
@@ -155,7 +158,6 @@
             }
             $(`.type-one:eq(${i})`).addClass("type-icon");
             $(`.type-one:eq(${i})`).css('color', teamTypesEntries[i].type1.color);
-            $(`.team:eq(${i}) .segment`).css({backgroundColor: teamTypesEntries[i].type1.color, border: 'none'});
 
          }
       }
@@ -164,13 +166,9 @@
 
    //Callback attached to closing icon's event listener that will remove selected pokemon from team
    function removeMember(index) {
-      //Remove this pokemon from the selectedPokemons array according to the index passed in
-      //Retain the indexes of other remaining team members using null
-      selectedPokemons[index] = null;
-      //Update the team's pokemon entries to reflect this removal
-      convertToEntry();
+      
       //Remove this team pokemon's closing icon and its eventListener
-      $(`.chosen:eq(${index}) .close.icon`).remove();
+      $(`.chosen:eq(${index}) .description .close.icon`).remove();
       //Remove this team pokemon's name
       $(`.chosen:eq(${index}) .description`).html('');
       //Change back this team pokemon's image to the default
@@ -180,31 +178,29 @@
       );
 
       $(`.ui.grid.team-member:eq(${index}) .details`).find(".type-one,.type-two,h5,p").text("");
+      $(`.team:eq(${index}) .ui.segment`).css({background: 'none', backgroundColor: 'white', border: '1px solid rgba(34, 36, 38, 0.15)'});
       $(`.chosen:eq(${index})`).css('border', '2px solid black');
       $(`.type-one:eq(${index})`).removeClass("type-icon");
       $(`.type-two:eq(${index})`).removeClass("type-icon");
-      $(`.team:eq(${index}) .ui.segment`).css({background: 'none', backgroundColor: 'white', border: '1px solid rgba(34, 36, 38, 0.15)'});
    }
 
    //Adding eventlisteners to each pokemon thumbnail so that we know which pokemon gets picked by user
    $('.thumbnail').click(function() {
+      //Checking for empty slot in the existing array
       var emptySlot = selectedPokemons.indexOf(null);
+      //If no vacated slot then add to new one
       if (emptySlot === -1 && selectedPokemons.length < 6) {
          //Overwriting the context of "this"
          //Id of the chosen pokemon will be added to the selectedPokemon array if it is not full
          selectedPokemons.push($('span', this).text());
-         //testing
       }
       //Slot in the newly selected pokemon's id into the existing array if there is an empty spot
-      
       if (emptySlot > -1) {
          selectedPokemons[emptySlot] = $('span', this).text();
       }
 
       //Turn the array of IDs to an array of selected Pokemons' entries
       convertToEntry();
-
-
 
       //Make the selected pokemons show up as thumbnails
       addMember();
