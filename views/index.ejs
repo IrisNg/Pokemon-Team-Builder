@@ -182,6 +182,11 @@
 
    //Callback attached to closing icon's event listener that will remove selected pokemon from team
    function removeMember(index) {
+      //Remove this pokemon from the selectedPokemons array according to the index passed in
+      //Retain the indexes of other remaining team members using null
+      selectedPokemons[index] = null;
+      //Update the team's pokemon entries to reflect this removal
+      convertToEntry();
       //Remove this team pokemon's closing icon and its eventListener
       $(`.chosen:eq(${index}) .description .close.icon`).remove();
       //Remove this team pokemon's name
