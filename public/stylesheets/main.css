@@ -37,7 +37,7 @@ body {
 }
 
 .team-member.ui.grid>.member-card.column{
-   padding: 0.5em 0.5em 0.5em 1em;
+   padding: 0.5em 0.5em 0.5em 0.5em;
 }
 
 .team-member.ui.grid>.member-details.column{
