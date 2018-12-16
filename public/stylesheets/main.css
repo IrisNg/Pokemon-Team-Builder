@@ -72,18 +72,14 @@ hr{
    text-align:center;
    margin-top: 1em;
    margin-bottom: 0.2em;
-<<<<<<< HEAD
-=======
-  
->>>>>>> master
-   background-color: white;
    font-weight: 700;
    font-size: 1.25vw;
    line-height:1.05em;
 }
 .type-icon{
-border: 1px solid white;
-border-radius: 3px;
+   background-color: white;
+   border: 1px solid white;
+   border-radius: 3px;
 }
 
 .type-icon{
