@@ -2,7 +2,7 @@
 
 <div class="ui container">
    <div class="ui stackable two column grid">
-      <!-- Creating chosen pokemon team's thumbnails -->
+      <!-- Creating chosen pokemon team members -->
       <% for(var i=0; i<6; i++){ %>
       <div class="ui column team">
          <div class="ui segment">
@@ -124,9 +124,9 @@
             $(`.chosen:eq(${i}) .close.icon`).click(removeMember.bind(null, i));
 
             //Adding type icons
-            $(`.type-one:eq(${i})`).html(teamTypesEntries[i].type1.name);
+            $(`.type-one:eq(${i})`).text(teamTypesEntries[i].type1.name);
             if(teamTypes[i].type2){
-               $(`.type-two:eq(${i})`).html(teamTypesEntries[i].type2.name);
+               $(`.type-two:eq(${i})`).text(teamTypesEntries[i].type2.name);
             }
 
             //Adding super-effective icons
@@ -148,13 +148,12 @@
             //Additional styling
             $(`.chosen:eq(${i})`).css('border', 'none');
             
-            if(!teamTypes[i].type2){
-               $(`.type-two:eq(${i})`).css('border', 'none');
-            }
             if(teamTypes[i].type2){
+               $(`.type-two:eq(${i})`).addClass("type-icon");
                $(`.type-two:eq(${i})`).css('color', teamTypesEntries[i].type2.color);
                $(`.team:eq(${i}) .segment`).css({backgroundImage: `linear-gradient(to bottom right, ${teamTypesEntries[i].type1.color},${teamTypesEntries[i].type2.color})`, border: 'none'});
             }
+            $(`.type-one:eq(${i})`).addClass("type-icon");
             $(`.type-one:eq(${i})`).css('color', teamTypesEntries[i].type1.color);
             $(`.team:eq(${i}) .segment`).css({backgroundColor: teamTypesEntries[i].type1.color, border: 'none'});
 
@@ -179,21 +178,25 @@
          'src',
          'https://pm1.narvii.com/6508/dbd421799e1fc9118c02766e5c13836c87db6070_hq.jpg'
       );
-      // $(`.stats:eq(${index}), .type-one:eq(${index}), .type-two:eq(${index})`).html("");
 
+      $(`.ui.grid.team-member:eq(${index}) .details`).find(".type-one,.type-two,h5,p").text("");
+      $(`.chosen:eq(${index})`).css('border', '2px solid black');
+      $(`.type-one:eq(${index})`).removeClass("type-icon");
+      $(`.type-two:eq(${index})`).removeClass("type-icon");
+      $(`.team:eq(${index}) .ui.segment`).css({background: 'none', backgroundColor: 'white', border: '1px solid rgba(34, 36, 38, 0.15)'});
    }
 
    //Adding eventlisteners to each pokemon thumbnail so that we know which pokemon gets picked by user
    $('.thumbnail').click(function() {
-
-      if (selectedPokemons.length < 6) {
+      var emptySlot = selectedPokemons.indexOf(null);
+      if (emptySlot === -1 && selectedPokemons.length < 6) {
          //Overwriting the context of "this"
          //Id of the chosen pokemon will be added to the selectedPokemon array if it is not full
          selectedPokemons.push($('span', this).text());
          //testing
       }
       //Slot in the newly selected pokemon's id into the existing array if there is an empty spot
-      var emptySlot = selectedPokemons.indexOf(null);
+      
       if (emptySlot > -1) {
          selectedPokemons[emptySlot] = $('span', this).text();
       }
