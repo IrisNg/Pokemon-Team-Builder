@@ -7,7 +7,7 @@
       <div class="ui column team">
          <div class="ui segment">
             <div class="ui grid team-member">
-               <div class="center aligned five wide column">
+               <div class="member-card center aligned five wide column">
                   <div class="ui card chosen">
                      <div class="image">
                         <img src="https://pm1.narvii.com/6508/dbd421799e1fc9118c02766e5c13836c87db6070_hq.jpg" />
@@ -15,23 +15,23 @@
                      <div class="description"></div>
                   </div>
                </div>
-               <div class="eleven wide column">
+               <div class="member-details eleven wide column">
                   <div class="ui grid details">
-                     <div class="two column row main">
+                     <div class="main two column row">
                         <div class="column"><div class="type-one"></div></div>
                         <div class="column"><div class="type-two"></div></div>
                      </div>
-                     <div class="row"><h5 class="header super-effective"></h5></div>
+                     <div class="effect row"><h5 class="header super-effective"></h5><hr></div>
                      <div class="two column row">
                         <div class="column"><p class="super-effective-one"></p></div>
-                        <div class="column"><p class="super-effective-two"></p></div>
+                        <div class="column"><p class="super-effective-two"></p></div>  
                      </div>
-                     <div class="row"><h5 class="header not-effective"></h5></div>
+                     <div class="effect row"><h5 class="header not-effective"></h5><hr></div>
                      <div class="two column row">
                         <div class="column"><p class="not-effective-one"></p></div>
                         <div class="column"><p class="not-effective-two"></p></div>
                      </div>
-                     <div class="row"><h5 class="header no-effect"></h5></div>
+                     <div class="effect row"><h5 class="header no-effect"></h5><hr></div>
                      <div class="two column row">
                         <div class="column"><p class="no-effect-one"></p></div>
                         <div class="column"><p class="no-effect-two"></p></div>
@@ -43,14 +43,14 @@
       </div>
       <% } %>
    </div>
-   <div class="ui ten column doubling centered grid thumbnails">
+   <div class="ui eight column doubling centered grid thumbnails">
       <!-- Creating ALL pokemon thumbnails -->
       <% pokedex.forEach( pokemon => { %>
       <div class="center aligned column">
          <div class="ui card thumbnail">
             <div class="image"><img src="<%= pokemon.image %>" /></div>
             <div class="description">
-               #<span> <%= pokemon.id %></span>
+               <strong>#</strong><span><%= pokemon.id %></span>
                <div class="pokemon-name"><%= pokemon.name %></div>
             </div>
          </div>
@@ -67,9 +67,10 @@
    var selectedPokemons = [];
    //Empty array that will contain the entries of the pokemons picked by the user
    var team;
-
-   var teamTypes = [];
-   var teamTypesEntries = [];
+   //Empty array that will contain the collective types of the pokemons picked by the user
+   var teamTypes;
+   //Empty array that will contain the entries of the pokemons' types
+   var teamTypesEntries;
 
    function convertToEntry() {
       //Turn the array of IDs (selectedPokemons) to an array of selected Pokemons' entries (team)
@@ -115,7 +116,7 @@
          //Per team member's thumbnail
          if (selectedPokemons[i]) {
             //Add description and closing icon
-            $(`.chosen:eq(${i}) .description`).html(`#${team[i].id} ${team[i].name}`);
+            $(`.chosen:eq(${i}) .description`).html(`<span>#${team[i].id}</span> ${team[i].name}`);
             $(`.chosen:eq(${i}) .description`).append("<i class='close icon'></i>");
             //Add pokemon image
             $(`.chosen:eq(${i}) img`).attr('src', team[i].image);
@@ -130,31 +131,31 @@
 
             //Adding super-effective icons
             $(`.super-effective:eq(${i})`).text("super-effective against");
-            $(`.super-effective-one:eq(${i})`).text(teamTypesEntries[i].type1.superEffective.join(", "));
+            $(`.super-effective-one:eq(${i})`).text(teamTypesEntries[i].type1.superEffective.join(" "));
             //Adding Not-very-effective icons
             $(`.not-effective:eq(${i})`).text("not-very-effective against");
-            $(`.not-effective-one:eq(${i})`).text(teamTypesEntries[i].type1.notEffective.join(", "));
+            $(`.not-effective-one:eq(${i})`).text(teamTypesEntries[i].type1.notEffective.join(" "));
             //Adding No-effect icons
             $(`.no-effect:eq(${i})`).text("no-effect against");
-            $(`.no-effect-one:eq(${i})`).text(teamTypesEntries[i].type1.noEffect.join(", "));
-            //Same of type 2, if it exists
+            $(`.no-effect-one:eq(${i})`).text(teamTypesEntries[i].type1.noEffect.join(" "));
+            //Same for type 2, if it exists
             if(teamTypes[i].type2){
-               $(`.super-effective-two:eq(${i})`).text(teamTypesEntries[i].type2.superEffective.join(", "));
-               $(`.not-effective-two:eq(${i})`).text(teamTypesEntries[i].type2.notEffective.join(", "));
-               $(`.no-effect-two:eq(${i})`).text(teamTypesEntries[i].type2.noEffect.join(", "));
-            }
-
-            if(!teamTypes[i].type2){
-               $(`.type-two`).css('border', 'none');
+               $(`.super-effective-two:eq(${i})`).text(teamTypesEntries[i].type2.superEffective.join(" "));
+               $(`.not-effective-two:eq(${i})`).text(teamTypesEntries[i].type2.notEffective.join(" "));
+               $(`.no-effect-two:eq(${i})`).text(teamTypesEntries[i].type2.noEffect.join(" "));
             }
 
             //Additional styling
             $(`.chosen:eq(${i})`).css('border', 'none');
-            $(`.type-one:eq(${i}), .type-two:eq(${i})`).css('color', teamTypesEntries[i].type1.color);
+            
+            if(!teamTypes[i].type2){
+               $(`.type-two:eq(${i})`).css('border', 'none');
+            }
             if(teamTypes[i].type2){
                $(`.type-two:eq(${i})`).css('color', teamTypesEntries[i].type2.color);
                $(`.team:eq(${i}) .segment`).css({backgroundImage: `linear-gradient(to bottom right, ${teamTypesEntries[i].type1.color},${teamTypesEntries[i].type2.color})`, border: 'none'});
             }
+            $(`.type-one:eq(${i})`).css('color', teamTypesEntries[i].type1.color);
             $(`.team:eq(${i}) .segment`).css({backgroundColor: teamTypesEntries[i].type1.color, border: 'none'});
 
          }

@@ -2,6 +2,13 @@
    border: 0.1px black solid;
 } */
 
+*{
+   font-family: 'Rajdhani', sans-serif;
+}
+body {
+   margin: 60px 120px;
+}
+
 .two.column.ui.grid .team.column:nth-child(odd) {
    padding: 0 2px 1rem 0;
 }
@@ -9,25 +16,48 @@
 .two.column.ui.grid .team.column:nth-child(even) {
    padding: 0 0 1rem 2px;
 }
-.team-member.ui.grid> .column:not(.row) {
-   padding: 0.5em;
+.ui.card.chosen {
+   display: inline-block;
+   border: 2px solid black;
+   vertical-align: middle;
 }
 
-.team p {
-   font-size: 0.7em;
+.chosen div.description {
+   text-align: left;
+   padding: 0 7px;
+   font-size: 1vw;
+   font-weight: 600;
+   line-height: 30px;
+   letter-spacing: 0.04em;
+   height:30px;
 }
+
+.close.icon {
+   float: right;
+}
+
+.team-member.ui.grid>.member-card.column{
+   padding: 0.5em 0.5em 0.5em 1em;
+}
+
+.team-member.ui.grid>.member-details.column{
+   padding: 0.5em 1em 0.5em 0.5em;
+}
+
+hr{
+  display: block;
+  height: 0.5px;
+  margin: 0 1em;
+  width:100%;
+  border: 0;
+  border-top: 0.1px solid #ffffff;  
+}
+
 
 .team-member.ui.grid .row {
-   padding-top: 0px;
-   padding-bottom: 0.5em;
+   padding-top: 0;
+   padding-bottom: 0.2em;
 }
-.team-member.ui.grid .row:nth-child(even) {
-   padding-bottom: 0.1em;
-}
-
-/* .team-member.ui.grid .row div.column {
-   padding-left: 0.5em;
-} */
 
 .ui.grid.details>.row .column:nth-child(2){
    padding-left: 0;
@@ -36,60 +66,54 @@
 .details {
    color: white;
 }
-/* .details .row:not(.main) .column {
-   height: 12px;
-} */
+
 .type-one,
 .type-two {
    text-align:center;
    margin-top: 1em;
+   margin-bottom: 0.2em;
    border: 1px solid white;
    border-radius: 3px;
    background-color: white;
+   font-weight: 700;
+   font-size: 1.2vw;
+   line-height:1.05em;
 }
 
-h5 {
-   font-size: 0.85em;
+.effect h5 {
+   font-size: 1vw;
    padding-left: 14px;
+   font-family: 'Bangers', cursive;
+   font-weight: 500;
+   letter-spacing: 0.08em;
+   margin-top:0;
+   margin-bottom:0;
 }
-.thumbnails .ui.card {
-   display: inline-block;
-}
-.ui.segment {
-   width: 100%;
-}
-.ui.card.chosen {
-   display: inline-block;
-   border: 2px solid black;
-}
-.thumbnail .description {
-   border-top: 0.5px solid #c2c2c2ea;
-   font-size: 0.79em;
-   font-weight: 600;
-   letter-spacing: 0.007em;
-   line-height: 17px;
+.team p {
+   font-size: 1vw;
+   letter-spacing: 0.01em;
+   line-height:1.1em;
 }
 
-.pokemon-name {
-   margin-top: -3px;
-   font-weight: normal;
-}
-.ui.container {
-   padding-top: 50px;
-}
-
-.close.icon {
-   float: right;
-}
 
 .ui.grid.thumbnails > .column:not(.row) {
    padding-left: 0.2rem;
    padding-right: 0.2rem;
 }
 
-.chosen .description {
-   text-align: left;
-   padding-left: 10px;
-   font-size: 0.75em;
-   letter-spacing: 0.007em;
+.thumbnails .description {
+   border-top: 0.5px solid #c2c2c2ea;
+   font-size: 0.9em;
+   font-weight: 500;
+   letter-spacing: 0.03em;
+   line-height: 17px;
 }
+span{
+   font-weight:700;
+}
+
+.pokemon-name {
+   margin-top: -3px;
+   font-weight: normal;
+}
+
