@@ -102,6 +102,39 @@ hr{
    line-height:1.1em;
 }
 
+.analysis-table{
+   font-size: 1.1vw;
+   text-align: center;
+   font-weight: 700;
+   
+  
+}
+
+
+.analysis-table .table-super-effective{
+   border: 1px solid limegreen;
+   border-radius: 2px;
+   background-color: limegreen;
+   color:white;
+   margin-bottom: 3px;
+   margin-top: 3px;
+}
+.analysis-table .table-not-effective{
+   border: 1px solid red;
+   border-radius: 2px;
+   background-color: red;
+   color:white;
+   margin-bottom: 3px;
+   margin-top: 3px;
+}
+.analysis-table .table-no-effect{
+   border: 1px solid gainsboro;
+   border-radius: 2px;
+   background-color: gainsboro;
+   color:white;
+   margin-bottom: 3px;
+   margin-top: 3px;
+}
 
 .ui.grid.thumbnails > .column:not(.row) {
    padding-left: 0.2rem;

@@ -44,15 +44,14 @@
       <% } %>
    </div>
    <!-- Analysis Table -->
-   <table class="ui very basic table">
-      <thead>
-         <tr class="table-header">
-         </tr>
-      </thead>
-      <tbody class="table-body">
-        
-      </tbody>
-   </table>
+   <div class="ui nine column grid analysis-table">
+      <div class="row table-header-1">
+         
+      </div>
+      <div class="row table-header-2">
+         
+      </div>      
+   </div>
    <div class="ui eight column doubling centered grid thumbnails">
       <!-- Creating ALL pokemon thumbnails -->
       <% pokedex.forEach( pokemon => { %>
@@ -87,8 +86,7 @@
    var teamTypesEntries;
    //To create an instance of the protoTable object later (AKA deep copy method on the web, not reference)
    var table;
-   //To calculate the minimum number of rows that needs to be created for the Analysis Table 
-   var minRows;
+   
    
 
    function conversionsAndCalculations() {
@@ -212,10 +210,11 @@
       //Start from fresh table always (using deep copy method to avoid referencing)
       table = JSON.parse(JSON.stringify(protoTable));
 
-      //Remove previous existing rows and header
-      $(".table-row").remove();
-      $("th").remove();
-      
+      // //Remove previous existing rows and header
+      // $(".table-row").remove();
+      $(".table-header-1 div").remove();
+      $(".table-header-2 div").remove();
+   
       //Only do the necessary calculations and display the Analysis Table when there is more than one pokemon
       if( selectedPokemons.length > 0 ){
          function addNameToTableType(effect){
@@ -243,46 +242,34 @@
                addNameToTableType("noEffect");
             }
          }
-         //Analysis Table - calculate the minimum number of rows that needs to be created for the Analysis Table
-         //An array containing the number of table rows needed by each type
-         var rowsPerType =[];
-         //Calculating the total number of pokemons linked to each type -> number of rows needed for each type
-         for (type in table){
-            var currentType = table[type];
-            currentType.total = currentType.superEffective.length + currentType.notEffective.length + currentType.noEffect.length;
-            rowsPerType.push(currentType.total);
-         }
-         //Finding the minimum number of rows
-         minRows = rowsPerType.reduce((min, current) => {
-            return Math.max(min, current);
-         });
-         console.log(minRows);
-         console.log(table);
-      
-         //Adding Analysis Table to the DOM
-         //for/in loop (new thing) to add table header
-         for (type in table){ 
-            $(".table-header").append(`<th>${table[type]["typeName"]}</th>`);
-         } 
-         //Creating minimum number of analysis table's rows
-         for(var r=1; r <= minRows; r++ ){
-            $(".table-body").append("<tr class='table-row'></tr>");
-         }
-         //Adding pokemon names to the analysis table
+
+         //Adding table header
+         var counter = 0;
          for (tableType in table){
-            var SE = table[tableType]["superEffective"];
-            var NVE = table[tableType]["notEffective"];
-            var NE = table[tableType]["noEffect"];
-            for (var s = 0; s < SE.length; s++){
-               $(`.table-row:eq(${s})`).append(`<td class='td-super-effective'>${SE[s]}</td>`);
-            }
-            for (var nve = SE.length; nve < (SE.length+NVE.length); nve++){
-               $(`.table-row:eq(${nve})`).append(`<td class='td-not-effective'>${NVE[nve-SE.length]}</td>`);
-            }
-            for (var ne = (SE.length + NVE.length); ne < (SE.length+NVE.length+NE.length); ne++){
-               $(`.table-row:eq(${ne})`).append(`<td class='td-no-effect'>${NE[ne-SE.length-NVE.length]}</td>`);
+            if(counter<9){
+               
+               var SEpokemons = table[tableType]["superEffective"].map(pokemon => `<div class='table-super-effective'>${pokemon}</div>`);
+               var NVEpokemons = table[tableType]["notEffective"].map(pokemon => `<div class='table-not-effective'>${pokemon}</div>`);
+               var NEpokemons = table[tableType]["noEffect"].map(pokemon => `<div class='table-no-effect'>${pokemon}</div>`);
+               var allPokemonHTML = SEpokemons.concat(NVEpokemons).concat(NEpokemons).join('');
+               console.log(allPokemonHTML);
+               
+               $(".ui.grid.analysis-table .table-header-1").append(`<div class='column table-column'><div class='table-type'>${tableType.toUpperCase()}</div>${allPokemonHTML}</div>`);
+               counter++;
+            } else {
+                
+               var SEpokemons = table[tableType]["superEffective"].map(pokemon => `<div class='table-super-effective'>${pokemon}</div>`);
+               var NVEpokemons = table[tableType]["notEffective"].map(pokemon => `<div class='table-not-effective'>${pokemon}</div>`);
+               var NEpokemons = table[tableType]["noEffect"].map(pokemon => `<div class='table-no-effect'>${pokemon}</div>`);
+               var allPokemonHTML = SEpokemons.concat(NVEpokemons).concat(NEpokemons).join('');
+               console.log(allPokemonHTML);
+               
+               $(".ui.grid.analysis-table .table-header-2").append(`<div class='column table-column'><div class='table-type'>${tableType.toUpperCase()}</div>${allPokemonHTML}</div>`);
+               counter++;
             }
          }
+         
+         
       }
    }
 
