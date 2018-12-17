@@ -46,10 +46,8 @@
    <!-- Analysis Table -->
    <div class="ui nine column grid analysis-table">
       <div class="row table-header-1">
-         
       </div>
       <div class="row table-header-2">
-         
       </div>      
    </div>
    <div class="ui eight column doubling centered grid thumbnails">
@@ -243,27 +241,32 @@
             }
          }
 
-         //Adding table header
+         //Adding table header & pokemons to the analysis table
          var counter = 0;
          for (tableType in table){
+            //Each header row of the table will have 9 types so the 18 types are split into two tables
             if(counter<9){
-               
+               //The first table for the first 9 types
+               //Adding pokemon names as cells
                var SEpokemons = table[tableType]["superEffective"].map(pokemon => `<div class='table-super-effective'>${pokemon}</div>`);
                var NVEpokemons = table[tableType]["notEffective"].map(pokemon => `<div class='table-not-effective'>${pokemon}</div>`);
                var NEpokemons = table[tableType]["noEffect"].map(pokemon => `<div class='table-no-effect'>${pokemon}</div>`);
+               //Stringing the html generated into one continuous string of HTML
                var allPokemonHTML = SEpokemons.concat(NVEpokemons).concat(NEpokemons).join('');
                console.log(allPokemonHTML);
-               
+               //Adding the type-name as header and the pokemon names under the respective type header
                $(".ui.grid.analysis-table .table-header-1").append(`<div class='column table-column'><div class='table-type'>${tableType.toUpperCase()}</div>${allPokemonHTML}</div>`);
                counter++;
             } else {
-                
+               //The second table for the last 9 types
+               //Adding pokemon names as cells
                var SEpokemons = table[tableType]["superEffective"].map(pokemon => `<div class='table-super-effective'>${pokemon}</div>`);
                var NVEpokemons = table[tableType]["notEffective"].map(pokemon => `<div class='table-not-effective'>${pokemon}</div>`);
                var NEpokemons = table[tableType]["noEffect"].map(pokemon => `<div class='table-no-effect'>${pokemon}</div>`);
+               //Stringing the html generated into one continuous string of HTML
                var allPokemonHTML = SEpokemons.concat(NVEpokemons).concat(NEpokemons).join('');
                console.log(allPokemonHTML);
-               
+               //Adding the type-name as header and the pokemon names under the type header
                $(".ui.grid.analysis-table .table-header-2").append(`<div class='column table-column'><div class='table-type'>${tableType.toUpperCase()}</div>${allPokemonHTML}</div>`);
                counter++;
             }
