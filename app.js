@@ -3,7 +3,7 @@ var express = require('express'),
    mongoose = require('mongoose'),
    Pokedex = require('./models/Pokedex'),
    Chart = require('./models/Chart'),
-   typesSeed = require('./models/Seed'),
+   typesSeed = require('./models/TypeSeed'),
    Table = require('./models/Table'),
    tableSeed = require('./models/TableSeed');
 

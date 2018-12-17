@@ -43,6 +43,16 @@
       </div>
       <% } %>
    </div>
+   <!-- Analysis Table -->
+   <table class="ui very basic table">
+      <thead>
+         <tr class="table-header">
+         </tr>
+      </thead>
+      <tbody class="table-body">
+        
+      </tbody>
+   </table>
    <div class="ui eight column doubling centered grid thumbnails">
       <!-- Creating ALL pokemon thumbnails -->
       <% pokedex.forEach( pokemon => { %>
@@ -63,7 +73,10 @@
    //Converting ejs variable to js variable
    var pokedex = <%- JSON.stringify(pokedex) %>;
    var types = <%- JSON.stringify(types) %>;
-   var tableProto = <%- JSON.stringify(table) %>;
+   var protoTable = <%- JSON.stringify(table) %>;
+   //delete unnecessary keys from mongoDB
+   delete protoTable._id;
+   delete protoTable.__v;
    //Empty array that will contain the IDs of the pokemons picked by the user (max 6)
    var selectedPokemons = [];
    //Empty array that will contain the entries of the pokemons picked by the user
@@ -72,9 +85,13 @@
    var teamTypes;
    //Empty array that will contain the entries of the pokemons' types
    var teamTypesEntries;
+   //To create an instance of the protoTable object later (AKA deep copy method on the web, not reference)
+   var table;
+   //To calculate the minimum number of rows that needs to be created for the Analysis Table 
+   var minRows;
+   
 
-
-   function convertToEntry() {
+   function conversionsAndCalculations() {
       //Empty out previous arrays
       team=[];
       teamTypes=[];
@@ -88,7 +105,7 @@
       });
 
       //Making a collective array of all selected pokemons' types
-      teamTypes = team.map(function(pokemon){
+      teamTypes = team.map( pokemon => {
          if (!pokemon){
             return null
          }
@@ -98,29 +115,21 @@
          }
       });
       //Turning this collective array of selected pokemons' types into full entries
-      teamTypesEntries = teamTypes.map(function(pokemon){
+      teamTypesEntries = teamTypes.map( pokemon => {
          if(!pokemon){
             return null
          }
          return {
-            type1: types.find(function(type){
+            type1: types.find( type => {
                return type.name === pokemon.type1;
             }),
-            type2: types.find(function(type){
+            type2: types.find( type => {
                return type.name === pokemon.type2;
             })
          }
-      });
-
-      // // <!-- UNDER CONSTRUCTION SECTION -->
-      // for (var i = 0; i < 6; i++) {
-      //    if (selectedPokemons[i]) {
-      //       teamTypesEntries[i].type1.superEffective.forEach(function(SEtype){
-      //          tableProto[SEtype]["superEffective"].push(team[i].name);
-      //       });
-      //    }
-      // }
-      console.log(tableProto);
+      });      
+            
+      analysisTable();
    }
 
    //Make the selected pokemons show up as thumbnails
@@ -169,6 +178,7 @@
 
          }
       }
+      
    }
 
    //Callback attached to closing icon's event listener that will remove selected pokemon from team
@@ -177,7 +187,7 @@
       //Retain the indexes of other remaining team members using null
       selectedPokemons[index] = null;
       //Update the team's pokemon entries to reflect this removal
-      convertToEntry();
+      conversionsAndCalculations();
       //Remove this team pokemon's closing icon and its eventListener
       $(`.chosen:eq(${index}) .description .close.icon`).remove();
       //Remove this team pokemon's name
@@ -188,12 +198,92 @@
          'https://pm1.narvii.com/6508/dbd421799e1fc9118c02766e5c13836c87db6070_hq.jpg'
       );
 
-      //Remove additional styling
+      //Remove added styling
       $(`.ui.grid.team-member:eq(${index}) .details`).find(".type-one,.type-two,h5,p").text("");
       $(`.team:eq(${index}) .ui.segment`).css({background: 'none', backgroundColor: 'white', border: '1px solid rgba(34, 36, 38, 0.15)'});
       $(`.chosen:eq(${index})`).css('border', '2px solid black');
       $(`.type-one:eq(${index})`).removeClass("type-icon");
       $(`.type-two:eq(${index})`).removeClass("type-icon");
+   }
+
+   //Function that manages the Analysis Table
+   function analysisTable() {
+
+      //Start from fresh table always (using deep copy method to avoid referencing)
+      table = JSON.parse(JSON.stringify(protoTable));
+
+      //Remove previous existing rows and header
+      $(".table-row").remove();
+      $("th").remove();
+      
+      //Only do the necessary calculations and display the Analysis Table when there is more than one pokemon
+      if( selectedPokemons.length > 0 ){
+         function addNameToTableType(effect){
+            //Add the pokemon's name to the type that it does super-effective/not-very-effective/no-effect damage to 
+            teamTypesEntries[i].type1[effect].forEach( toType => {
+               table[toType.toLowerCase()][effect].push(team[i].name);
+            });
+            //Add the pokemon's name to the type that it does super-effective/not-very-effective/no-effect damage to based on the pokemon's 2nd type
+            if(teamTypes[i].type2){
+               teamTypesEntries[i].type2[effect].forEach( toType => {
+                  table[toType.toLowerCase()][effect].push(team[i].name);
+               });
+            }
+         }
+         // Analysis Table - Creating object
+         for (var i = 0; i < 6; i++) {
+            //Do this for each pokemon that has been selected
+            if (selectedPokemons[i]) {
+               console.log(teamTypesEntries[i]);
+               //Add the pokemon's name to the table type that it does super-effective damage to
+               addNameToTableType("superEffective");
+               //Add the pokemon's name to the table type that it does not-very-effective damage to
+               addNameToTableType("notEffective");
+               //Add the pokemon's name to the table type that it does no-effect damage to
+               addNameToTableType("noEffect");
+            }
+         }
+         //Analysis Table - calculate the minimum number of rows that needs to be created for the Analysis Table
+         //An array containing the number of table rows needed by each type
+         var rowsPerType =[];
+         //Calculating the total number of pokemons linked to each type -> number of rows needed for each type
+         for (type in table){
+            var currentType = table[type];
+            currentType.total = currentType.superEffective.length + currentType.notEffective.length + currentType.noEffect.length;
+            rowsPerType.push(currentType.total);
+         }
+         //Finding the minimum number of rows
+         minRows = rowsPerType.reduce((min, current) => {
+            return Math.max(min, current);
+         });
+         console.log(minRows);
+         console.log(table);
+      
+         //Adding Analysis Table to the DOM
+         //for/in loop (new thing) to add table header
+         for (type in table){ 
+            $(".table-header").append(`<th>${table[type]["typeName"]}</th>`);
+         } 
+         //Creating minimum number of analysis table's rows
+         for(var r=1; r <= minRows; r++ ){
+            $(".table-body").append("<tr class='table-row'></tr>");
+         }
+         //Adding pokemon names to the analysis table
+         for (tableType in table){
+            var SE = table[tableType]["superEffective"];
+            var NVE = table[tableType]["notEffective"];
+            var NE = table[tableType]["noEffect"];
+            for (var s = 0; s < SE.length; s++){
+               $(`.table-row:eq(${s})`).append(`<td class='td-super-effective'>${SE[s]}</td>`);
+            }
+            for (var nve = SE.length; nve < (SE.length+NVE.length); nve++){
+               $(`.table-row:eq(${nve})`).append(`<td class='td-not-effective'>${NVE[nve-SE.length]}</td>`);
+            }
+            for (var ne = (SE.length + NVE.length); ne < (SE.length+NVE.length+NE.length); ne++){
+               $(`.table-row:eq(${ne})`).append(`<td class='td-no-effect'>${NE[ne-SE.length-NVE.length]}</td>`);
+            }
+         }
+      }
    }
 
    //Adding eventlisteners to each pokemon thumbnail so that we know which pokemon gets picked by user
@@ -211,7 +301,7 @@
          selectedPokemons[emptySlot] = $('span', this).text();
       }
       //Turn the array of IDs to an array of selected Pokemons' entries
-      convertToEntry();
+      conversionsAndCalculations();
       //Make the selected pokemons show up as thumbnails
       addMember();
    });
