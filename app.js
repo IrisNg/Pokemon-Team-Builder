@@ -10,11 +10,14 @@ var express = require('express'),
    Table = require('./models/Table'),
    tableSeed = require('./models/TableSeed');
 
+var url = process.env.DATABASEURL || 'mongodb://localhost:27017/pokemon_team_builder';
 mongoose.connect(
-   'mongodb://localhost:27017/pokemon_team_builder',
+   url,
    { useNewUrlParser: true }
 );
-app.set('view engine', 'ejs');
+
+//irisngwl:<%=F9e155b7286Y%>@ds031721.mlab.com:31721/pokemon_team_builder
+mongodb: app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 //
