@@ -247,5 +247,7 @@ app.get('/table', (req, res) => {
    });
 });
 
-const PORT = process.env.port || 5000;
-app.listen(PORT, () => console.log('Server is up and running!'));
+var server = app.listen(process.env.PORT || 5000, function() {
+   var port = server.address().port;
+   console.log('Express is working on port ' + port);
+});
