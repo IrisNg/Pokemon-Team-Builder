@@ -1,8 +1,6 @@
 var express = require('express'),
    app = express(),
    mongoose = require('mongoose'),
-   request = require('request'),
-   requestPromise = require('request-promise'),
    //Data Models
    Pokedex = require('./models/Pokedex'),
    Chart = require('./models/Chart'),
@@ -10,18 +8,13 @@ var express = require('express'),
    Table = require('./models/Table'),
    tableSeed = require('./models/TableSeed');
 
-var url = process.env.DATABASEURL || 'mongodb://localhost:27017/pokemon_team_builder';
+var url = process.env.DATABASEURL || 'mongodb://azuration:S98206305f@ds031721.mlab.com:31721/pokemon_team_builder';
 mongoose.connect(
    url,
    { useNewUrlParser: true }
 );
 
-// mongoose.connect(
-//    'mongodb://localhost:27017/pokemon_team_builder',
-//    { useNewUrlParser: true }
-// );
-
-mongodb: app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 //
@@ -57,17 +50,17 @@ app.get('/', (req, res) => {
 
 //SEED ROUTES ---------------------------------------------------------------------
 
-//TYPES CHART -------------------------------------------------------------------
-// app.get('/types/new', (req, res) => {
-//    Chart.create(typesSeed, (err, createdChart) => {
-//       if (err) {
-//          console.log(err);
-//       } else {
-//          console.log(createdChart);
-//       }
-//    });
-//    res.send('making');
-// });
+// TYPES CHART -------------------------------------------------------------------
+app.get('/types/new', (req, res) => {
+   Chart.create(typesSeed, (err, createdChart) => {
+      if (err) {
+         console.log(err);
+      } else {
+         console.log(createdChart);
+      }
+   });
+   res.send('making');
+});
 
 app.get('/types', (req, res) => {
    Chart.find({}, (err, foundChart) => {
@@ -78,17 +71,17 @@ app.get('/types', (req, res) => {
       }
    });
 });
-//TABLE PROTOTYPE ---------------------------------------------------------------
-// app.get('/table/new', (req, res) => {
-//    Table.create(tableSeed, (err, createdTable) => {
-//       if (err) {
-//          console.log(err);
-//       } else {
-//          console.log(createdTable);
-//       }
-//    });
-//    res.send('making table');
-// });
+// TABLE PROTOTYPE ---------------------------------------------------------------
+app.get('/table/new', (req, res) => {
+   Table.create(tableSeed, (err, createdTable) => {
+      if (err) {
+         console.log(err);
+      } else {
+         console.log(createdTable);
+      }
+   });
+   res.send('making table');
+});
 
 app.get('/table', (req, res) => {
    Table.find({}, (err, foundTable) => {
