@@ -3,7 +3,7 @@
 } */
 html{
    font-family: 'Rajdhani', sans-serif;
-   font-size: .9vw;
+   font-size: 0.9vw;
 }
 body {
    margin: 5vh 10vw;
@@ -21,18 +21,21 @@ body {
 }
 .chosen div.description {
    text-align: left;
-   padding: 0 .8em;
-   font-size: .9rem;
+   padding: 0 0em 0 .5em;
+   font-size: .95rem;
    font-weight: 500;
    line-height: 2em;
    letter-spacing: .03em;
    height: 2em;
+   
 }
 .close.icon {
+   vertical-align: middle;
    float: right;
+   font-size: .8rem;
 }
 .team-member.ui.grid>.member-card.column{
-   padding: .5rem .5rem .5rem .5rem;
+   padding: .5rem;
 }
 .team-member.ui.grid>.member-details.column{
    padding: .5rem 1rem .5rem .5rem;
@@ -135,7 +138,7 @@ hr{
 }
 .thumbnails .description {
    border-top: 0.5px solid #c2c2c2ea;
-   font-size: 95%;
+   font-size: .95rem;
    font-weight: 500;
    letter-spacing: .03em;
    line-height: 1.4em;
@@ -146,4 +149,56 @@ span{
 .pokemon-name {
    margin-top: -.3rem;
 }
+
+/* Extra small devices (phones, 400px and down) */
+@media only screen and (max-width: 400px) {
+   html { 
+      font-size: 2.05vw; 
+   }
+   body {
+      margin: 3vh 1vw;
+   }
+   .two.column.ui.grid .team.column {
+      padding : 0 0 1rem 0 !important;
+   }
+  
+} 
+
+/*Small devices (phones, 479px and down) */
+@media only screen and (max-width: 479px) {
+   html { 
+      font-size: 2vw; 
+   }
+   body {
+      margin: 3vh 3vw;
+   }
+   .two.column.ui.grid .team.column {
+      padding : 0 0 1rem 0 !important;
+   }
+} 
+
+@media screen and (max-width: 767px) {
+   html { 
+      font-size: 2.05vw; 
+   }
+   body {
+      margin: 4vh 4vw;
+   }
+   .two.column.ui.grid .team.column {
+      padding : 0 0 1rem 0 !important;
+   }   
+}
+
+@media screen and (max-width: 991px) {
+   html { 
+      font-size: 2.05vw; 
+   }
+   body {
+      margin: 5vh 5vw;
+   }
+   .two.column.ui.grid .team.column {
+      padding : 0 0 1rem 0 !important;
+   }
+}
+
 
