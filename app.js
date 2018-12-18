@@ -25,7 +25,7 @@ mongodb: app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
 //
-app.get('/team_builder', (req, res) => {
+app.get('/', (req, res) => {
    Pokedex.find({}, (err, foundPokedex) => {
       if (err) {
          console.log(err);
