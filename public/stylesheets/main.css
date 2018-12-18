@@ -1,17 +1,18 @@
 /* .column {
    border: 0.1px black solid;
 } */
-*{
+html{
    font-family: 'Rajdhani', sans-serif;
+   font-size: .9vw;
 }
 body {
-   margin: 60px 120px;
+   margin: 5vh 10vw;
 }
 .two.column.ui.grid .team.column:nth-child(odd) {
-   padding: 0 2px 1rem 0;
+   padding: 0 .3rem 1rem 0;
 }
 .two.column.ui.grid .team.column:nth-child(even) {
-   padding: 0 0 1rem 2px;
+   padding: 0 0 1rem .3rem;
 }
 .ui.card.chosen {
    display: inline-block;
@@ -20,33 +21,33 @@ body {
 }
 .chosen div.description {
    text-align: left;
-   padding: 0 7px;
-   font-size: 1vw;
-   font-weight: 600;
-   line-height: 30px;
-   letter-spacing: 0.04em;
-   height:30px;
+   padding: 0 .8em;
+   font-size: .9rem;
+   font-weight: 500;
+   line-height: 2em;
+   letter-spacing: .03em;
+   height: 2em;
 }
 .close.icon {
    float: right;
 }
 .team-member.ui.grid>.member-card.column{
-   padding: 0.5em 0.5em 0.5em 0.5em;
+   padding: .5rem .5rem .5rem .5rem;
 }
 .team-member.ui.grid>.member-details.column{
-   padding: 0.5em 1em 0.5em 0.5em;
+   padding: .5rem 1rem .5rem .5rem;
 }
 hr{
   display: block;
-  height: 0.5px;
-  margin: 0 1em;
+  height: .5px;
+  margin: 0 1rem;
   width:100%;
   border: 0;
-  border-top: 0.1px solid #ffffff;  
+  border-top: .5px solid #ffffff;  
 }
 .team-member.ui.grid .row {
    padding-top: 0;
-   padding-bottom: 0.2em;
+   padding-bottom: .3rem;
 }
 .ui.grid.details>.row .column:nth-child(2){
    padding-left: 0;
@@ -57,74 +58,76 @@ hr{
 .type-one,
 .type-two {
    text-align:center;
-   margin-top: 1em;
-   margin-bottom: 0.2em;
+   margin-top: 1.2rem;
+   font-family: 'Roboto Condensed', sans-serif;
+   margin-bottom: 0.3rem;
    font-weight: 700;
-   font-size: 1.25vw;
-   line-height:1.05em;
+   font-size: 1.25rem;
+   line-height: 1.4em;
+   letter-spacing: .08em;
 }
 .type-icon{
    background-color: white;
-   border: 1px solid white;
    border-radius: 3px;
 }
-.type-icon{
-   border: 1px solid white;
-   border-radius: 3px;
-}
+
 .effect h5 {
-   font-size: 1vw;
-   padding-left: 14px;
-   font-family: 'Bangers', cursive;
-   font-weight: 500;
-   letter-spacing: 0.08em;
-   margin-top:0;
-   margin-bottom:0;
+   font-family: 'Roboto', sans-serif;
+   font-size: .95rem;
+   padding-left: 1rem;
+   font-style: italic;
+   font-weight: 400;
+   margin-top: 0;
+   margin-bottom: 0;
 }
 .team p {
-   font-size: 1vw;
-   letter-spacing: 0.01em;
+   font-size: 1.1rem;
+   font-family: 'Roboto Condensed', sans-serif;
+   font-weight: 700;
    line-height:1.1em;
+   
 }
 .analysis-table{
-   font-size: 1.1vw;
+   font-size: 1.1rem;
    text-align: center;
+   font-family: 'Roboto Condensed', sans-serif;
    font-weight: 700;
 }
 .table-pokemon{
+   font-family: 'Roboto Condensed', sans-serif;
    border-radius: 2px;
    color:white;
-   margin: 3px 0;
-   font-size: 0.9vw;
+   margin: .4rem 0;
+   font-size: .95rem;
 }
 .table-super-effective{
-   border: 1px solid limegreen;
    background-color: limegreen;
 }
 .table-not-effective{
-   border: 1px solid red;
    background-color: red;
 }
 .table-no-effect{
-   border: 1px solid gainsboro;
    background-color: gainsboro;
 }
 .ui.grid div.column.legend-column{
    padding: 0;
 }
 .legend-column .ui.grid>.row>.column{
-   padding: 0.7em;
+   padding: .7rem;
 }
 .legend-column .ui.grid>.row>.table-description.column{
-   padding: 0 0.7em 0 0;
+   padding-left: 0;
+   padding-top: 0.3rem;
 }
 .legend-column .ui.segment{
-   font-size: 1.1vw;
+   font-size: 1.1rem;
    padding: 1rem;
 }
 .table-description{
-   font-size: 0.5vw;
-   font-weight: 500;
+   font-family: 'Roboto', sans-serif;
+   text-align: left;
+   font-size: .8rem;
+   font-weight: 100;
 }
 .ui.grid.thumbnails > .column:not(.row) {
    padding-left: 0.2rem;
@@ -132,16 +135,15 @@ hr{
 }
 .thumbnails .description {
    border-top: 0.5px solid #c2c2c2ea;
-   font-size: 0.9em;
+   font-size: 95%;
    font-weight: 500;
-   letter-spacing: 0.03em;
-   line-height: 17px;
+   letter-spacing: .03em;
+   line-height: 1.4em;
 }
 span{
    font-weight:700;
 }
 .pokemon-name {
-   margin-top: -3px;
-   font-weight: normal;
+   margin-top: -.3rem;
 }
 
