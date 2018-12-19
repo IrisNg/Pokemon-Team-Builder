@@ -156,7 +156,7 @@ hr.table-divider{
    background-color: rgba(34, 34, 34, 0.2);
    line-height: 1.5em;
 }
-hr.table-summary{
+hr.table-summary-line{
    /* HELLPPP */
    margin: 1rem -1rem;
    padding: 0;
@@ -165,6 +165,10 @@ hr.table-summary{
    background-color: rgba(34, 34, 34, 0.2);
 } */
 
+/* remove this following later */
+.ui.grid.thumbnails{
+   margin-top: 8rem;
+}
 .ui.grid.thumbnails > .column:not(.row) {
    padding-left: 0.4rem;
    padding-right: 0.4rem;

@@ -39,7 +39,7 @@ app.get('/', (req, res) => {
                      nationalPokedex.forEach(pokemon => {
                         pokemon.name = pokemon.name.toUpperCase();
                      });
-                     res.render('index', { pokedex: nationalPokedex, types: types, table: foundTable[0] });
+                     res.render('index', { nPokedex: nationalPokedex, types: types, table: foundTable[0] });
                   }
                });
             }

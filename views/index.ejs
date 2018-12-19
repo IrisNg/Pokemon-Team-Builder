@@ -5,17 +5,19 @@
    <div class="ui doubling two column grid">
       <!-- Creating chosen pokemon team members -->
       <% for(var i=0; i<6; i++){ %>
-      <div class="ui column team">
-         <div class="ui segment">
-            <div class="ui grid team-member">
-               <div class="member-card center aligned five wide column">
-                  <div class="ui card chosen">
-                     <div class="image">
-                        <img src="https://pm1.narvii.com/6508/dbd421799e1fc9118c02766e5c13836c87db6070_hq.jpg" />
+         <div class="ui column team">
+            <div class="ui segment">
+               <div class="ui grid team-member">
+                  <!-- Creating chosen pokemon's card -->
+                  <div class="member-card center aligned five wide column">
+                     <div class="ui card chosen">
+                        <div class="image">
+                           <img src="https://pm1.narvii.com/6508/dbd421799e1fc9118c02766e5c13836c87db6070_hq.jpg" />
+                        </div>
+                        <div class="description"></div>
                      </div>
-                     <div class="description"></div>
                   </div>
-               </div>
+                  <!-- Creating chosen pokemon's type details -->
                <div class="member-details eleven wide column">
                   <div class="ui grid details">
                      <div class="main two column row">
@@ -48,60 +50,145 @@
    <!-- Analysis Table -->      
    <div class="analysis-table">
       <div class="ui stackable doubling grid legend-section">
+         <!-- Analysis Table's Title -->      
          <div class="row table-title">
             <div class="sixteen wide column">
                POKEMON TEAM ANALYSIS TABLE
             </div>
          </div>
-         <hr class="table-divider">
-         <div class="row legend-row"> 
-            <div class="two wide column table-effect">
-               SUPER-EFFECTIVE
-            </div>
-            <div class="column legend-icon table-pokemon">
-               <div class="table-super-effective">
-                  2x
+         <!-- Analysis Table's Legend -->      
+            <hr class="table-divider">
+            <div class="row legend-row"> 
+               <div class="two wide column table-effect">
+                  SUPER-EFFECTIVE
                </div>
-            </div>
-            <div class="two wide column table-description">
-               This pokemon's attack does double damage to this type
-            </div>
-            <div class="three wide column table-effect">
+               <div class="column legend-icon table-pokemon">
+                  <div class="table-super-effective">
+                     2x
+                  </div>
+               </div>
+               <div class="two wide column table-description">
+                  This pokemon's attack does double damage to this type
+               </div>
+               <div class="three wide column table-effect">
                   NOT-VERY-EFFECTIVE
                </div>
-            <div class="column legend-icon table-pokemon">
-               <div class="table-not-effective">
-                  0.5x
+               <div class="column legend-icon table-pokemon">
+                  <div class="table-not-effective">
+                     0.5x
+                  </div>
                </div>
-            </div>
-            <div class="two wide column table-description">
-               This pokemon's attack does half damage to this type
-            </div>
-            <div class="two wide column table-effect">
+               <div class="two wide column table-description">
+                  This pokemon's attack does half damage to this type
+               </div>
+               <div class="two wide column table-effect">
                   NO-EFFECT
                </div>
-            <div class="column legend-icon table-pokemon">
-               <div class="table-no-effect">
-                  0x
+               <div class="column legend-icon table-pokemon">
+                  <div class="table-no-effect">
+                     0x
+                  </div>
+               </div>
+               <div class="two wide column table-description">
+                  This pokemon's attack has no effect on this type
                </div>
             </div>
-            <div class="two wide column table-description">
-               This pokemon's attack has no effect on this type
-            </div>
+            <hr class="table-divider">
          </div>
-          <hr class="table-divider">
       </div>
-   </div>
-         
+      
+   <!-- Analysis Table's Main Table -->      
    <div class="ui stackable doubling nine column grid analysis-table">
       <div class="row table-header">
       </div>
    </div>
-   <hr class="table-summary">    
+   <hr class="table-summary-line">    
 
+   <!-- Analysis Table summary  -->
+   <div class="table-summary">
+      HELLO!
+   </div>
+   <hr class="table-summary-line">
+   <!-- Filter Options  -->
+   <form>
+      <div>FILTER BY</div>
+      <div><button type="button" id="uncheck">Uncheck All</button></div>
+      <div><button type="button" id="check">Check All</button></div>
+      <div id="types-checkbox">
+         <div>TYPES</div>
+         <input type="checkbox" id="normal" value="normal" checked>
+         <label for="normal">NORMAL</label>
+         <input type="checkbox" id="fighting" value="fighting" checked>
+         <label for="fighting">FIGHTING</label>
+         <input type="checkbox" id="flying" value="flying" checked>
+         <label for="flying">FLYING</label>
+         <input type="checkbox" id="poison" value="poison" checked>
+         <label for="poison">POISON</label>
+         <input type="checkbox" id="ground" value="ground" checked>
+         <label for="ground">GROUND</label>
+         <input type="checkbox" id="rock" value="rock" checked>
+         <label for="rock">ROCK</label>
+         <input type="checkbox" id="bug" value="bug" checked>
+         <label for="bug">BUG</label>
+         <input type="checkbox" id="ghost" value="ghost" checked>
+         <label for="ghost">GHOST</label>
+         <input type="checkbox" id="steel" value="steel" checked>
+         <label for="steel">STEEL</label>
+         <input type="checkbox" id="fire" value="fire" checked>
+         <label for="fire">FIRE</label>
+         <input type="checkbox" id="water" value="water" checked>
+         <label for="water">WATER</label>
+         <input type="checkbox" id="grass" value="grass" checked>
+         <label for="grass">GRASS</label>
+         <input type="checkbox" id="electric" value="electric" checked>
+         <label for="electric">ELECTRIC</label>
+         <input type="checkbox" id="psychic" value="psychic" checked>
+         <label for="psychic">PSYCHIC</label>
+         <input type="checkbox" id="ice" value="ice" checked>
+         <label for="ice">ICE</label>
+         <input type="checkbox" id="dragon" value="dragon" checked>
+         <label for="dragon">DRAGON</label>
+         <input type="checkbox" id="dark" value="dark" checked>
+         <label for="dark">DARK</label>
+         <input type="checkbox" id="fairy" value="fairy" checked>
+         <label for="fairy">FAIRY</label>
+      </div>
+      <div>
+         <div>VERSION</div>
+         <select id="version">
+            <option value="all" selected>All Versions</option>
+            <option value="redBlueYelDex">Red/Blue/Yellow</option>
+            <option value="goldSilvCrysDex">Gold/Silver/Crystal</option>
+            <option value="rubySappEmerDex">Ruby/Sapphire/Emerald</option>
+            <option value="diaPearlDex">Diamond/Pearl</option>
+            <option value="platDex">Platinum</option>
+            <option value="heartSoulDex">HeartGold/SoulSilver</option>
+            <option value="blackWhiteDex">Black/White</option>
+            <option value="blackWhite2Dex">Black 2/White 2</option>
+            <option value="omegaAlphaDex">Omega Ruby/Alpha Sapphire</option>
+            <option value="Dex">X / Y</option>
+         </select>
+      </div>
+      <div>
+         <div>INCLUDE POKEMON THAT EVOLVED BY TRADE</div>
+         <input type="radio" id="noTrade" value="false" name="evolve">
+         <label for="noTrade">No</label>
+         <input type="radio" id="yesTrade" value="true" name="evolve" checked>
+         <label for="yesTrade">Yes</label>
+      </div>
+      <div>
+         <div>SORT BY</div>
+         <select id="sort">
+            <option value="id">ID</option>
+            <option value="a-z">Name</option>
+         </select>
+      </div>
+      <button type="button" id="filter-submit">Reload</button>
+   </form>   
+
+   <!-- Creating ALL filtered pokemons' thumbnails -->
    <div class="ui eight column doubling centered grid thumbnails">
-      <!-- Creating ALL pokemon thumbnails -->
-      <% pokedex.forEach( pokemon => { %>
+      <% nPokedex.forEach( pokemon => { %>
       <div class="center aligned column">
          <div class="ui card thumbnail">
             <div class="image"><img src="<%= pokemon.image %>" /></div>
@@ -115,222 +202,12 @@
    </div>
 </div>
 
-<script type="text/javascript">
-   //Converting ejs variable to js variable
-   var pokedex = <%- JSON.stringify(pokedex) %>;
+<script>
+   //Converting ejs variables to js variables and passing into the external js script file
+   var nPokedex = <%- JSON.stringify(nPokedex) %>;
    var types = <%- JSON.stringify(types) %>;
    var protoTable = <%- JSON.stringify(table) %>;
-   //delete unnecessary keys from mongoDB
-   delete protoTable._id;
-   delete protoTable.__v;
-   //Empty array that will contain the IDs of the pokemons picked by the user (max 6)
-   var selectedPokemons = [];
-   //Empty array that will contain the entries of the pokemons picked by the user
-   var team;
-   //Empty array that will contain the collective types of the pokemons picked by the user
-   var teamTypes;
-   //Empty array that will contain the entries of the pokemons' types
-   var teamTypesEntries;
-   //To create an instance of the protoTable object later (AKA deep copy method on the web, not reference)
-   var table;
-   
-   
-
-   function conversionsAndCalculations() {
-      //Empty out previous arrays
-      team=[];
-      teamTypes=[];
-      teamTypesEntries=[];
-
-      //Turn the array of IDs (selectedPokemons) to an array of selected Pokemons' entries (team)
-      team = selectedPokemons.map(selected => {
-         //Finding the pokemon entry from the pokedex based on the Id in the selectedPokemon array
-         //Because the Id in the selectedPokemon array is a string, it has to be parsed into Number
-         return pokedex.find(pokemon => pokemon.id === parseInt(selected, 10));
-      });
-
-      //Making a collective array of all selected pokemons' types
-      teamTypes = team.map( pokemon => {
-         if (!pokemon){
-            return null
-         }
-         return {
-            type1: pokemon.types.type1.toUpperCase(),
-            type2: pokemon.types.type2 ? pokemon.types.type2.toUpperCase() : null
-         }
-      });
-      //Turning this collective array of selected pokemons' types into full entries
-      teamTypesEntries = teamTypes.map( pokemon => {
-         if(!pokemon){
-            return null
-         }
-         return {
-            type1: types.find( type => {
-               return type.name === pokemon.type1;
-            }),
-            type2: types.find( type => {
-               return type.name === pokemon.type2;
-            })
-         }
-      });      
-            
-      analysisTable();
-   }
-
-   //Make the selected pokemons show up as thumbnails
-   function addMember(){
-      for (var i = 0; i < 6; i++) {
-         //Per team member's thumbnail
-         if (selectedPokemons[i]) {
-            //Add description and closing icon
-            $(`.chosen:eq(${i}) .description`).html(`<span>#${team[i].id}</span> ${team[i].name}`);
-            $(`.chosen:eq(${i}) .description`).append("<i class='close icon'></i>");
-            //Add pokemon image
-            $(`.chosen:eq(${i}) img`).attr('src', team[i].image);
-            //Add eventListener to each existing closing icon that will remove said team member when clicked
-            $(`.chosen:eq(${i}) .close.icon`).click(removeMember.bind(null, i));
-
-            //Adding type icons
-            $(`.type-one:eq(${i})`).text(teamTypesEntries[i].type1.name);
-            if(teamTypes[i].type2){
-               $(`.type-two:eq(${i})`).text(teamTypesEntries[i].type2.name);
-            }
-            //Adding super-effective icons
-            $(`.super-effective:eq(${i})`).text("super-effective against");
-            $(`.super-effective-one:eq(${i})`).text(teamTypesEntries[i].type1.superEffective.join(" "));
-            //Adding Not-very-effective icons
-            $(`.not-effective:eq(${i})`).text("not-very-effective against");
-            $(`.not-effective-one:eq(${i})`).text(teamTypesEntries[i].type1.notEffective.join(" "));
-            //Adding No-effect icons
-            $(`.no-effect:eq(${i})`).text("no-effect against");
-            $(`.no-effect-one:eq(${i})`).text(teamTypesEntries[i].type1.noEffect.join(" "));
-            //Same for type 2, if it exists
-            if(teamTypes[i].type2){
-               $(`.super-effective-two:eq(${i})`).text(teamTypesEntries[i].type2.superEffective.join(" "));
-               $(`.not-effective-two:eq(${i})`).text(teamTypesEntries[i].type2.notEffective.join(" "));
-               $(`.no-effect-two:eq(${i})`).text(teamTypesEntries[i].type2.noEffect.join(" "));
-            }
-            //Additional styling
-            $(`.team:eq(${i}) .segment`).css({backgroundColor: teamTypesEntries[i].type1.color, border: 'none'});
-            $(`.chosen:eq(${i})`).css('border', 'none');
-            if(teamTypes[i].type2){
-               $(`.type-two:eq(${i})`).addClass("type-icon");
-               $(`.type-two:eq(${i})`).css('color', teamTypesEntries[i].type2.color);
-               $(`.team:eq(${i}) .segment`).css({backgroundImage: `linear-gradient(to bottom right, ${teamTypesEntries[i].type1.color},${teamTypesEntries[i].type2.color})`, border: 'none'});
-            }
-            $(`.type-one:eq(${i})`).addClass("type-icon");
-            $(`.type-one:eq(${i})`).css('color', teamTypesEntries[i].type1.color);
-
-         }
-      }
-      
-   }
-
-   //Callback attached to closing icon's event listener that will remove selected pokemon from team
-   function removeMember(index) {
-      //Remove this pokemon from the selectedPokemons array according to the index passed in
-      //Retain the indexes of other remaining team members using null
-      selectedPokemons[index] = null;
-      //Update the team's pokemon entries to reflect this removal
-      conversionsAndCalculations();
-      //Remove this team pokemon's closing icon and its eventListener
-      $(`.chosen:eq(${index}) .description .close.icon`).remove();
-      //Remove this team pokemon's name
-      $(`.chosen:eq(${index}) .description`).html('');
-      //Change back this team pokemon's image to the default
-      $(`.chosen:eq(${index}) img`).attr(
-         'src',
-         'https://pm1.narvii.com/6508/dbd421799e1fc9118c02766e5c13836c87db6070_hq.jpg'
-      );
-
-      //Remove added styling
-      $(`.ui.grid.team-member:eq(${index}) .details`).find(".type-one,.type-two,h5,p").text("");
-      $(`.team:eq(${index}) .ui.segment`).css({background: 'none', backgroundColor: 'white', border: '1px solid rgba(34, 36, 38, 0.15)'});
-      $(`.chosen:eq(${index})`).css('border', '2px solid black');
-      $(`.type-one:eq(${index})`).removeClass("type-icon");
-      $(`.type-two:eq(${index})`).removeClass("type-icon");
-   }
-
-   //Function that manages the Analysis Table
-   function analysisTable() {
-
-      //Start from fresh table always (using deep copy method to avoid referencing)
-      table = JSON.parse(JSON.stringify(protoTable));
-
-      // //Remove previous existing rows and header
-      $(".table-header div").remove();
-   
-      //Only do the necessary calculations and display the Analysis Table when there is more than one pokemon
-      if( selectedPokemons.length > 0 ){
-         function addNameToTableType(effect){
-            //Add the pokemon's name to the type that it does super-effective/not-very-effective/no-effect damage to 
-            teamTypesEntries[i].type1[effect].forEach( toType => {
-               table[toType.toLowerCase()][effect].push(team[i].name);
-            });
-            //Add the pokemon's name to the type that it does super-effective/not-very-effective/no-effect damage to based on the pokemon's 2nd type
-            if(teamTypes[i].type2){
-               teamTypesEntries[i].type2[effect].forEach( toType => {
-                  table[toType.toLowerCase()][effect].push(team[i].name);
-               });
-            }
-         }
-         // Analysis Table - Creating object
-         for (var i = 0; i < 6; i++) {
-            //Do this for each pokemon that has been selected
-            if (selectedPokemons[i]) {
-               //Add the pokemon's name to the table type that it does super-effective damage to
-               addNameToTableType("superEffective");
-               //Add the pokemon's name to the table type that it does not-very-effective damage to
-               addNameToTableType("notEffective");
-               //Add the pokemon's name to the table type that it does no-effect damage to
-               addNameToTableType("noEffect");
-            }
-         }
-
-         //Adding table header & pokemons to the analysis table
-         for (tableType in table){
-            //Adding pokemon names as cells
-            var SEpokemons = table[tableType]["superEffective"].map(pokemon => `<div class='table-super-effective table-pokemon'>${pokemon}</div>`);
-            var NVEpokemons = table[tableType]["notEffective"].map(pokemon => `<div class='table-not-effective table-pokemon'>${pokemon}</div>`);
-            var NEpokemons = table[tableType]["noEffect"].map(pokemon => `<div class='table-no-effect table-pokemon'>${pokemon}</div>`);
-            //Stringing the html generated into one continuous string of HTML
-            var allPokemonHTML = SEpokemons.concat(NVEpokemons).concat(NEpokemons).join('');
-               
-            //Each header row of the table will have 9 / 4 / 1 types depending on the window size
-            //Adding the type-name as header and the pokemon names under the respective type header
-            $(".ui.grid.analysis-table .table-header").append(
-               `<div class='column table-column'>
-                  <div class='table-type'>
-                     ${tableType.toUpperCase()}
-                  </div>
-                  ${allPokemonHTML}
-               </div>`
-            );
-         }
-      }
-   }
-
-   
-
-   //Adding eventlisteners to each pokemon thumbnail so that we know which pokemon gets picked by user
-   $('.thumbnail').click(function() {
-      //Checking for empty slot in the existing array
-      var emptySlot = selectedPokemons.indexOf(null);
-      //If no vacated slot then add to new one
-      if (emptySlot === -1 && selectedPokemons.length < 6) {
-         //Overwriting the context of "this"
-         //Id of the chosen pokemon will be added to the selectedPokemon array if it is not full
-         selectedPokemons.push($('span', this).text());
-      }
-      //Slot in the newly selected pokemon's id into the existing array if there is an empty spot
-      if (emptySlot > -1) {
-         selectedPokemons[emptySlot] = $('span', this).text();
-      }
-      //Turn the array of IDs to an array of selected Pokemons' entries
-      conversionsAndCalculations();
-      //Make the selected pokemons show up as thumbnails
-      addMember();
-   });
 </script>
+<script type="text/javascript" src="/js/main.js"></script>
 
 <% include ./partials/footer %>
