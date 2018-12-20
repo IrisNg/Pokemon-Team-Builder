@@ -18,15 +18,19 @@ body {
    display: inline-block;
    border: 2px solid black;
    vertical-align: middle;
+   
+}
+.ui.card img{
+   margin-top: 1em;
 }
 .chosen div.description {
    text-align: left;
    padding: 0 0em 0 .5em;
    font-size: .95rem;
    font-weight: 500;
-   line-height: 2em;
+   line-height: 1.7em;
    letter-spacing: .03em;
-   height: 2em;
+   height: 1em;   
    
 }
 .close.icon {
@@ -239,3 +243,4 @@ span{
 }
 
 
+/* testing */

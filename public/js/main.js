@@ -231,6 +231,8 @@ function addMember() {
          }
          $(`.type-one:eq(${i})`).addClass('type-icon');
          $(`.type-one:eq(${i})`).css('color', teamTypesEntries[i].type1.color);
+         $(`.chosen:eq(${i}) img`).css('margin-top', '0');
+         $(`.chosen:eq(${i}) .description`).css('height', '1.7em');
       }
    }
 }
@@ -249,7 +251,7 @@ function removeMember(index) {
    //Change back this team pokemon's image to the default
    $(`.chosen:eq(${index}) img`).attr(
       'src',
-      'https://pm1.narvii.com/6508/dbd421799e1fc9118c02766e5c13836c87db6070_hq.jpg'
+      'https://orig00.deviantart.net/696e/f/2013/019/2/7/pokeball_by_zel_duh-d5s04qj.gif'
    );
 
    //Remove added styling
@@ -264,6 +266,9 @@ function removeMember(index) {
    $(`.chosen:eq(${index})`).css('border', '2px solid black');
    $(`.type-one:eq(${index})`).removeClass('type-icon');
    $(`.type-two:eq(${index})`).removeClass('type-icon');
+
+   $(`.chosen:eq(${index}) img`).css('margin-top', '1em');
+   $(`.chosen:eq(${index}) .description`).css('height', '1em');
 }
 
 //Function that manages the Analysis Table
@@ -272,7 +277,7 @@ function analysisTable() {
    table = JSON.parse(JSON.stringify(protoTable));
 
    // //Remove previous existing rows and header
-   $('.table-header div').remove();
+   $('div.table-column').remove();
 
    //Only do the necessary calculations and display the Analysis Table when there is more than one pokemon
    if (selectedPokemons.length > 0) {
@@ -317,7 +322,6 @@ function analysisTable() {
          var allPokemonHTML = SEpokemons.concat(NVEpokemons)
             .concat(NEpokemons)
             .join('');
-
          //Each header row of the table will have 9 / 4 / 1 types depending on the window size
          //Adding the type-name as header and the pokemon names under the respective type header
          $('.ui.grid.analysis-table .table-header').append(
@@ -332,21 +336,48 @@ function analysisTable() {
    }
    analysisSummary();
 }
-var tableTypeEntry;
-var recommended;
 function analysisSummary() {
-   for (tableType in table) {
-      if (table[tableType].notEffective.length > 4 && table[tableType].superEffective.length < 2) {
-         tableTypeEntry = types.filter(typeEntry => typeEntry.superEffective.includes(table[tableType].typeName));
-         //remove same type immunity/ineffectiveness
+   //Remove any previous messages
+   $('.table-summary').html('');
+   //Finding the tableType that the team is the strongest against
+   //Creating a temporary instance of the existing table variable in array form (to use the reduce method)
+   var tempArray = [];
+   for (elementType in table) {
+      tempArray.push(table[elementType]);
+   }
+   //Use the reduce method to find the tableType with the most number of super-effective pokemons (i.e the type User's team is the strongest against)
+   var strongestAgainst = tempArray.reduce((a, b) => (a.superEffective.length > b.superEffective.length ? a : b));
+   //Display the 'very strong' message only if the team has more than 3 pokemons that are strong against this strongestAgainst-type
+   if (strongestAgainst.superEffective.length > 3) {
+      $('.table-summary').append(
+         `<div>Fantastic! Your team is very strong against ${strongestAgainst.typeName} type!</div>`
+      );
+   }
 
-         recommended = tableTypeEntry.map(entry => entry.name);
+   for (tableType in table) {
+      //Finding the types that can deal super-effective damage to the type User's team is weak against (i.e the types that are strong against the team's weakness type)
+      //Then pull out the names of those types from the filtered results
+      var recommended = types
+         .filter(typeEntry => typeEntry.superEffective.includes(table[tableType].typeName))
+         .map(entry => entry.name);
+      if (table[tableType].notEffective.length - table[tableType].superEffective.length > 3) {
+         //Display the analysis message on the summary section
          $('.table-summary').append(
-            `Your team is overwhelmingly weak to ${
+            `<div>Bad news! Your team is overwhelmingly weak to ${
                table[tableType].typeName
-            } type! It is recommended that you switch out either blah blah blah to some ${recommended.join(
+            } type! It is recommended that you switch out either ${strongestAgainst.superEffective.join(
                ' or '
-            )} pokemon`
+            )} to some ${recommended.join(' or ')} pokemon</div>`
+         );
+      }
+      //Do the same for no-Effect
+      if (table[tableType].noEffect.length - table[tableType].superEffective.length > 1) {
+         $('.table-summary').append(
+            `<div>DOOM news! Your Pokemons are practically doing no damage to ${
+               table[tableType].typeName
+            } type! PLEASE switch out either ${strongestAgainst.superEffective.join(' or ')} to some ${recommended.join(
+               ' or '
+            )} pokemon</div>`
          );
       }
    }
