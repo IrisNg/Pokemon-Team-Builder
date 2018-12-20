@@ -1,8 +1,12 @@
 <% include ./partials/header %>
 
-<div class="ui container">
-      
-   <div class="ui doubling two column grid">
+<!-- Website Logo -->
+<div class="logo">            
+   <img src="https://i.imgur.com/1YaoK9y.png">
+</div>   
+
+<div class="container">
+   <div class="ui doubling two column grid whole-team">
       <!-- Creating chosen pokemon team members -->
       <% for(var i=0; i<6; i++){ %>
          <div class="ui column team">
@@ -49,66 +53,78 @@
 
    <!-- Analysis Table -->      
    <div class="analysis-table">
-      <div class="ui stackable doubling grid legend-section">
+      <div class="ui stackable doubling grid">
          <!-- Analysis Table's Title -->      
          <div class="row table-title">
             <div class="sixteen wide column">
                POKEMON TEAM ANALYSIS TABLE
             </div>
          </div>
-         <!-- Analysis Table's Legend -->      
-            <hr class="table-divider">
-            <div class="row legend-row"> 
-               <div class="two wide column table-effect">
-                  SUPER-EFFECTIVE
-               </div>
-               <div class="column legend-icon table-pokemon">
-                  <div class="table-super-effective">
+      </div>
+      <!-- Analysis Table's Legend -->      
+      <hr class="table-divider">
+      <div class="ui three column stackable grid legend-section">
+         <div class="column">
+            <div class="ui grid">
+               <div class="row legend-row">
+                  <div class="five wide column table-effect">
+                     SUPER EFFECTIVE
+                  </div>
+                  <div class="two wide column legend-icon table-pokemon table-super-effective">
                      2x
                   </div>
-               </div>
-               <div class="two wide column table-description">
-                  This pokemon's attack does double damage to this type [GOOD!]
-               </div>
-               <div class="three wide column table-effect">
-                  NOT-VERY-EFFECTIVE
-               </div>
-               <div class="column legend-icon table-pokemon">
-                  <div class="table-not-effective">
-                     0.5x
+                  <div class="nine wide column table-description">
+                     This pokemon's attack does double damage to this type [GOOD!]
                   </div>
-               </div>
-               <div class="two wide column table-description">
-                  This pokemon's attack does half damage to this type [BAD]
-               </div>
-               <div class="two wide column table-effect">
-                  NO-EFFECT
-               </div>
-               <div class="column legend-icon table-pokemon">
-                  <div class="table-no-effect">
-                     0x
-                  </div>
-               </div>
-               <div class="two wide column table-description">
-                  This pokemon's attack has no effect on this type [OH NO...]
                </div>
             </div>
-            <hr class="table-divider">
+         </div>
+         <div class="column">
+            <div class="ui grid">
+               <div class="row legend-row">
+                  <div class="five wide column table-effect">
+                        NOT VERY EFFECTIVE
+                  </div>
+                  <div class="two wide column legend-icon table-pokemon table-not-effective">
+                     0.5x
+                  </div>
+                  <div class="nine wide column table-description">
+                        This pokemon's attack does half damage to this type [BAD]                
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="column">
+            <div class="ui grid">
+               <div class="row legend-row">
+                  <div class="five wide column table-effect">
+                        NO EFFECT
+                  </div>
+                  <div class="two wide column legend-icon table-pokemon table-no-effect">
+                     0x
+                  </div>
+                  <div class="nine wide column table-description">
+                        This pokemon's attack has no effect on this type [OH NO...]                  
+                  </div>
+               </div>
+            </div>
          </div>
       </div>
+      <hr class="table-divider">            
+   </div>
       
    <!-- Analysis Table's Main Table -->      
    <div class="ui stackable doubling nine column grid analysis-table">
       <div class="row table-header">
       </div>
    </div>
-   <hr class="table-summary-line">    
+     
 
    <!-- Analysis Table summary  -->
    <div class="table-summary">
       
+      <hr class="table-divider">
    </div>
-   <hr class="table-summary-line">
    <!-- Filter Options  -->
    <form>
       <div>FILTER BY</div>

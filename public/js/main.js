@@ -189,7 +189,7 @@ function addMember() {
       //Per team member's thumbnail
       if (selectedPokemons[i]) {
          //Add description and closing icon
-         $(`.chosen:eq(${i}) .description`).html(`<span>#${team[i].id}</span> ${team[i].name}`);
+         $(`.chosen:eq(${i}) .description`).html(`#${team[i].id} ${team[i].name}`);
          $(`.chosen:eq(${i}) .description`).append("<i class='close icon'></i>");
          //Add pokemon image
          $(`.chosen:eq(${i}) img`).attr('src', team[i].image);
