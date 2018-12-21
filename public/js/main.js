@@ -121,6 +121,7 @@ function filterAndSort() {
    //Display the filtered pokedex
    filterPokedex();
 }
+
 //Display the filtered pokedex
 function filterPokedex() {
    //Remove all existing pokemon thumbnails that are being displayed
@@ -189,7 +190,7 @@ function addMember() {
       //Per team member's thumbnail
       if (selectedPokemons[i]) {
          //Add description and closing icon
-         $(`.chosen:eq(${i}) .description`).html(`#${team[i].id} ${team[i].name}`);
+         $(`.chosen:eq(${i}) .description`).html(`<span>#${team[i].id}</span> ${team[i].name}`);
          $(`.chosen:eq(${i}) .description`).append("<i class='close icon'></i>");
          //Add pokemon image
          $(`.chosen:eq(${i}) img`).attr('src', team[i].image);
@@ -336,9 +337,11 @@ function analysisTable() {
    }
    analysisSummary();
 }
+
 function analysisSummary() {
    //Remove any previous messages
    $('.table-summary').html('');
+   $('.table-summary-line').html('');
    //Finding the tableType that the team is the strongest against
    //Creating a temporary instance of the existing table variable in array form (to use the reduce method)
    var tempArray = [];
@@ -381,4 +384,6 @@ function analysisSummary() {
          );
       }
    }
+
+   $('.table-summary-line').append('<hr class="table-divider">');
 }

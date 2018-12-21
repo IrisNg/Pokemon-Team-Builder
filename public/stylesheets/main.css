@@ -1,6 +1,3 @@
-/* .column {
-   border: 0.1px black solid;
-} */
 html {
    font-family: 'Rajdhani', sans-serif;
    font-size: 0.9vw;
@@ -10,14 +7,13 @@ html {
 }
 /* Website logo */
 .logo {
-   margin: 0 0 3.4% 0;
-   padding: 0 12.5% 0 37.5%;
+   margin: 0 0 5rem 0;
+   text-align: center;
    background-color: #fac900;
-   height: 13.5%;
+   height: 8rem;
 }
 .logo img {
-   width: 50%;
-   margin-top: 2%;
+   width: 30.5rem;
 }
 /* overall */
 .ui.grid.whole-team,
@@ -41,7 +37,7 @@ html {
 .ui.card img {
    margin-top: 1em;
 }
-.chosen div.description {
+.chosen .description {
    text-align: left;
    padding: 0 0 0 .5em;
    font-size: .95rem;
@@ -49,6 +45,10 @@ html {
    line-height: 1.7em;
    letter-spacing: .03em;
    height: 1em;   
+}
+.chosen .description span{
+   margin-right: .1rem;
+   font-size: 1rem;
 }
 .close.icon {
    vertical-align: middle;
@@ -85,7 +85,7 @@ hr {
    text-align:center;
    margin-top: 1.2rem;
    font-family: 'Roboto Condensed', sans-serif;
-   margin-bottom: 0.3rem;
+   margin-bottom: .3rem;
    font-weight: 700;
    font-size: 1.25rem;
    line-height: 1.4em;
@@ -108,14 +108,14 @@ hr {
    font-size: 1.1rem;
    font-family: 'Roboto Condensed', sans-serif;
    font-weight: 700;
-   line-height:1.1em;
+   line-height: 1.1em;
 }
 /* Analysis-table */
 .analysis-table {
    font-size: 1.1rem;
-   text-align: center;
    font-family: 'Roboto Condensed', sans-serif;
    font-weight: 700;
+   text-align: center;
 }
 .table-pokemon {
    border-radius: 2px;
@@ -135,10 +135,10 @@ hr {
 }
 /* Legend */
 .ui.grid>.table-title {
-   margin-top: 5vh;
+   margin-top: 3rem;
    text-align: center;
    font-size: 2rem;
-   letter-spacing: 0.05em;
+   letter-spacing: .05em;
 }
 hr.table-divider {
    margin: 1rem 0;
@@ -147,7 +147,7 @@ hr.table-divider {
    background-color: rgba(34, 34, 34, 0.2);
 }
 .ui.grid.legend-section {
-   padding-left: 1.5rem;
+   padding-left: 1.3rem;
    margin: .5rem 0;
 }
 .ui.grid>.row>.column.table-effect {
@@ -161,16 +161,25 @@ hr.table-divider {
    height: 1.7rem;
    text-align: center;
    padding: 0;
+   font-size: 1rem;
 } 
 .ui.grid.legend-section .row>.column.table-description { 
    font-family: 'Roboto', sans-serif;
    text-align: left;
-   font-size: .95rem;
+   font-size: 1rem;
    font-weight: 300;
    padding-left: 1em;
+   margin-top: -.1rem;
  } 
+ .column.table-description i{
+   margin-left: .3rem;
+   color: dimgray;
+ }
  
 /* actual table */
+.ui.grid.analysis-table>.row.table-header {
+   padding-bottom: 0;
+}
 .ui.grid>.row>.column.table-column {
    padding-left: 0;
    padding-right: 0;
@@ -180,17 +189,116 @@ hr.table-divider {
    line-height: 1.5em;
 }
 /* Don't touch on top */
+.filter-form {
+   font-family: 'Roboto Condensed', sans-serif;
+   letter-spacing: .03em;
+}
+.filter-header {
+   font-family: 'Roboto Condensed', sans-serif;
+   margin-top: 3rem;
+   font-size: 1.5rem;
+   font-weight: 700;
+   letter-spacing: .04em;
+   text-align: center;
+}
+hr.filter-divider {
+   margin-bottom: 3rem;
+}
+div.input-header {
+   display: inline-block;
+   font-family: 'Roboto Condensed', sans-serif;
+   font-size: 1.2rem;
+   line-height: 1.7rem;
+   margin: 0 0 1rem .1rem;
+}
+.ui.attached.button {
+   font-family: 'Roboto', sans-serif;
+   display: inline-block;
+   padding: .2rem;
+   font-size: .8rem;
+   box-sizing: border-box;
+   vertical-align: middle;
+   margin: -.2rem 0 0 0;
+}
+.ui.left.attached.button {
+   margin-left: 2rem;
+}
+/* Checkboxes styling */
+.ui.grid.checkbox-contents {
+   margin: 0;
+}
+.ui.grid.form-contents .checkbox-column {
+   padding-right:0;
+}
+.ui.grid.checkbox-contents .column {
+   padding: 0;
+}
+.checkbox-custom {
+   opacity: 0;
+   position: absolute;   
+}
+.checkbox-custom, .checkbox-custom-label {
+   display: inline-block;
+   font-family: 'Roboto', sans-serif;
+   font-weight:300;
+   font-size: .9rem;
+   vertical-align: middle;
+   margin: 0 0 .8rem 0;
+   cursor: pointer;
+}
+.checkbox-custom-label {
+   position: relative;
+}
+.checkbox-custom + .checkbox-custom-label:before {
+   content: '';
+   background: #fff;
+   border: 1.5px solid #ddd;
+   display: inline-block;
+   vertical-align: middle;
+   width: 12px;
+   height: 12px;
+   margin-right: 6px;
+}
+.checkbox-custom:checked + .checkbox-custom-label:before {
+   background: dimgray;
+   border: 1.5px solid dimgray;
+}
+.checkbox-custom:focus + .checkbox-custom-label {
+ outline: 1px solid #ddd; 
+}
+/* dropdown */
 
-
+/* radio */
+div.radio-header {
+   font-family: 'Roboto', sans-serif;
+   font-weight: 700;
+   font-size: .9rem;
+   margin: .6rem 2.5rem 1rem .1rem;
+   display: inline-block;
+}
+div.input-radio {
+   display: inline-block;
+}
+.ui.radio.checkbox:nth-of-type(2){
+   padding-left: 2rem;
+}
+/* reload button */
+#filter-submit {
+   font-family: 'Roboto Condensed', sans-serif;
+   margin-top: 1.3rem;
+   padding: .5rem;
+   width: 100%;
+}
+/* don't touch below */
 .ui.grid.thumbnails {
-   margin-top: 8rem;
+   margin-top: 2rem;
 }
 .ui.grid.thumbnails > .column:not(.row) {
-   padding-left: 0.4rem;
-   padding-right: 0.4rem;
+   padding-left: .4rem;
+   padding-right: .4rem;
 }
 .thumbnails .description {
-   border-top: 0.5px solid #c2c2c2ea;
+   border-top: .5px solid #c2c2c2ea;
    font-size: .95rem;
    font-weight: 500;
    letter-spacing: .03em;
@@ -202,6 +310,7 @@ span {
 .pokemon-name {
    margin-top: -.3rem;
 }
+
 @media screen and (max-width: 991px) {
    html { 
       font-size: 2.05vw; 
@@ -212,73 +321,64 @@ span {
    .two.column.ui.grid .team.column {
       padding : 0 0 1rem 0 !important;
    }
-   .logo {
-      margin: 0 0 6% 0;
-      padding: 0 7% 0 33%;
-      height: 13%;
-   }
-   .logo img {
-      width: 60%;
-      margin-top: 1.2rem;
-   }
-   .ui.grid>.row>.column.table-effect {
-      padding: 0 0.1em 0 0;
-   }
+   .analysis-table,
+   .table-pokemon,
+   .ui.grid>.row>.column.table-effect,
+   .ui.grid.legend-section .row .column.legend-icon,
+   .ui.grid.legend-section .row>.column.table-description, 
+   .thumbnails .description {
+      font-size: .75rem;
+   }   
 }
 @media screen and (max-width: 767px) {
-   html { 
-      font-size: 2.05vw; 
-   }
    .container {
       margin: 4vh 4vw;
    }
-   .two.column.ui.grid .team.column {
-      padding : 0 0 1rem 0 !important;
-   }   
-   .logo {
-      margin: 0 0 7% 0;
-      padding: 0 5% 0 30%;
-      height: 10%;
+   .ui.grid.legend-section {
+      padding-left: 0;
+      margin-left: -1.5rem;
    }
-   .logo img {
-      width: 65%;
-      margin-top: 1rem;
-   }
-   .ui.grid>.row>.column.table-effect {
-      padding: 0 0.5em 0 0;
+   .analysis-table,
+   .table-pokemon,
+   .ui.grid>.row>.column.table-effect,
+   .ui.grid.legend-section .row .column.legend-icon,
+   .ui.grid.legend-section .row>.column.table-description, 
+   .thumbnails .description {
+      font-size: 1.15rem;
    }
 }
 /*Small devices (phones, 479px and down) */
 @media only screen and (max-width: 479px) {
    html { 
-      font-size: 2vw; 
+      font-size: 2.15vw; 
    }
    .container {
       margin: 3vh 3vw;
    }
-   .two.column.ui.grid .team.column {
-      padding : 0 0 1rem 0 !important;
-   }
-   .logo {
-      margin: 0 0 2% 0;
-      padding: 0 5% 0 25%;
-      height: 10%;
-   }
-   .logo img {
-      width: 70%;
-      margin-top: 1.2rem;
+   .analysis-table,
+   .table-pokemon,
+   .ui.grid>.row>.column.table-effect,
+   .ui.grid.legend-section .row .column.legend-icon,
+   .ui.grid.legend-section .row>.column.table-description, 
+   .thumbnails .description {
+      font-size: 1.2rem;
    }
 } 
 /* Extra small devices (phones, 400px and down) */
 @media only screen and (max-width: 400px) {
    html { 
-      font-size: 2.05vw; 
+      font-size: 2.2vw; 
    }
    .container {
       margin: 3vh 1vw;
    }
-   .two.column.ui.grid .team.column {
-      padding : 0 0 1rem 0 !important;
+   .analysis-table,
+   .table-pokemon,
+   .ui.grid>.row>.column.table-effect,
+   .ui.grid.legend-section .row .column.legend-icon,
+   .ui.grid.legend-section .row>.column.table-description, 
+   .thumbnails .description {
+      font-size: 1.3rem;
    }
 } 
-/* testing */
+

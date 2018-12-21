@@ -2,7 +2,7 @@
 
 <!-- Website Logo -->
 <div class="logo">            
-   <img src="https://i.imgur.com/1YaoK9y.png">
+   <img src="https://i.imgur.com/g8Pw1UO.png">
 </div>   
 
 <div class="container">
@@ -63,7 +63,7 @@
       </div>
       <!-- Analysis Table's Legend -->      
       <hr class="table-divider">
-      <div class="ui three column stackable grid legend-section">
+      <div class="ui stackable three column grid legend-section">
          <div class="column">
             <div class="ui grid">
                <div class="row legend-row">
@@ -74,7 +74,8 @@
                      2x
                   </div>
                   <div class="nine wide column table-description">
-                     This pokemon's attack does double damage to this type [GOOD!]
+                     This pokemon's attack does double damage to this type 
+                     <i class="fas fa-fist-raised"></i>
                   </div>
                </div>
             </div>
@@ -89,7 +90,8 @@
                      0.5x
                   </div>
                   <div class="nine wide column table-description">
-                        This pokemon's attack does half damage to this type [BAD]                
+                        This pokemon's attack does half damage to this type 
+                        <i class="fas fa-heart-broken"></i>                
                   </div>
                </div>
             </div>
@@ -104,7 +106,8 @@
                      0x
                   </div>
                   <div class="nine wide column table-description">
-                        This pokemon's attack has no effect on this type [OH NO...]                  
+                        This pokemon's attack has no effect on this type 
+                        <i class="fas fa-skull"></i>
                   </div>
                </div>
             </div>
@@ -121,85 +124,142 @@
      
 
    <!-- Analysis Table summary  -->
-   <div class="table-summary">
-      
-      <hr class="table-divider">
+   <div>
+      <div class="table-summary-line"></div>
+      <div class="table-summary">
+      </div>
+      <div class="table-summary-line"></div>
    </div>
    <!-- Filter Options  -->
-   <form>
-      <div>FILTER BY</div>
-      <div><button type="button" id="uncheck">Uncheck All</button></div>
-      <div><button type="button" id="check">Check All</button></div>
-      <div id="types-checkbox">
-         <div>TYPES</div>
-         <input type="checkbox" id="normal" value="normal" checked>
-         <label for="normal">NORMAL</label>
-         <input type="checkbox" id="fighting" value="fighting" checked>
-         <label for="fighting">FIGHTING</label>
-         <input type="checkbox" id="flying" value="flying" checked>
-         <label for="flying">FLYING</label>
-         <input type="checkbox" id="poison" value="poison" checked>
-         <label for="poison">POISON</label>
-         <input type="checkbox" id="ground" value="ground" checked>
-         <label for="ground">GROUND</label>
-         <input type="checkbox" id="rock" value="rock" checked>
-         <label for="rock">ROCK</label>
-         <input type="checkbox" id="bug" value="bug" checked>
-         <label for="bug">BUG</label>
-         <input type="checkbox" id="ghost" value="ghost" checked>
-         <label for="ghost">GHOST</label>
-         <input type="checkbox" id="steel" value="steel" checked>
-         <label for="steel">STEEL</label>
-         <input type="checkbox" id="fire" value="fire" checked>
-         <label for="fire">FIRE</label>
-         <input type="checkbox" id="water" value="water" checked>
-         <label for="water">WATER</label>
-         <input type="checkbox" id="grass" value="grass" checked>
-         <label for="grass">GRASS</label>
-         <input type="checkbox" id="electric" value="electric" checked>
-         <label for="electric">ELECTRIC</label>
-         <input type="checkbox" id="psychic" value="psychic" checked>
-         <label for="psychic">PSYCHIC</label>
-         <input type="checkbox" id="ice" value="ice" checked>
-         <label for="ice">ICE</label>
-         <input type="checkbox" id="dragon" value="dragon" checked>
-         <label for="dragon">DRAGON</label>
-         <input type="checkbox" id="dark" value="dark" checked>
-         <label for="dark">DARK</label>
-         <input type="checkbox" id="fairy" value="fairy" checked>
-         <label for="fairy">FAIRY</label>
+   <form class="filter-form ui form">
+      <h3 class="filter-header">POKEDEX FILTER OPTIONS</h3>
+      <hr class="table-divider filter-divider">  
+      <div class="ui stackable grid form-contents">
+         <div class="seven wide column checkbox-column">
+            <div id="types-checkbox">
+               <div class="input-header">
+                  TYPES
+                  <button type="button" id="uncheck" class="ui left attached basic button">Uncheck All</button>
+                  <button type="button" id="check" class="ui right attached basic button">Check All</button>
+               </div>
+               <div class="ui six column doubling grid checkbox-contents">
+                  <div class="column">
+                     <input type="checkbox" id="normal" value="normal" class="checkbox-custom" checked>
+                     <label for="normal" class="checkbox-custom-label">NORMAL</label>
+                  </div>
+                  <div class="column">
+                     <input type="checkbox" id="fighting" value="fighting" class="checkbox-custom" checked>
+                     <label for="fighting" class="checkbox-custom-label">FIGHTING</label>
+                  </div>
+                  <div class="column">
+                     <input type="checkbox" id="flying" value="flying" class="checkbox-custom" checked>
+                     <label for="flying" class="checkbox-custom-label">FLYING</label>
+                  </div>
+                  <div class="column">
+                     <input type="checkbox" id="poison" value="poison" class="checkbox-custom" checked>
+                     <label for="poison" class="checkbox-custom-label">POISON</label>
+                  </div>
+                  <div class="column">
+                     <input type="checkbox" id="ground" value="ground" class="checkbox-custom" checked>
+                     <label for="ground" class="checkbox-custom-label">GROUND</label>
+                  </div>
+                  <div class="column">
+                     <input type="checkbox" id="rock" value="rock" class="checkbox-custom" checked>
+                     <label for="rock" class="checkbox-custom-label">ROCK</label>
+                  </div>
+                  <div class="column">
+                     <input type="checkbox" id="bug" value="bug" class="checkbox-custom" checked>
+                     <label for="bug" class="checkbox-custom-label">BUG</label>
+                  </div>
+                  <div class="column">
+                     <input type="checkbox" id="ghost" value="ghost" class="checkbox-custom" checked>
+                     <label for="ghost" class="checkbox-custom-label">GHOST</label>
+                  </div>
+                  <div class="column">
+                     <input type="checkbox" id="steel" value="steel" class="checkbox-custom" checked>
+                     <label for="steel" class="checkbox-custom-label">STEEL</label>
+                  </div>
+                  <div class="column">
+                     <input type="checkbox" id="fire" value="fire" class="checkbox-custom" checked>
+                     <label for="fire" class="checkbox-custom-label">FIRE</label>
+                  </div>
+                  <div class="column">
+                     <input type="checkbox" id="water" value="water" class="checkbox-custom" checked>
+                     <label for="water" class="checkbox-custom-label">WATER</label>
+                  </div>
+                  <div class="column">
+                     <input type="checkbox" id="grass" value="grass" class="checkbox-custom" checked>
+                     <label for="grass" class="checkbox-custom-label">GRASS</label>
+                  </div>
+                  <div class="column">
+                     <input type="checkbox" id="electric" value="electric" class="checkbox-custom" checked>
+                     <label for="electric" class="checkbox-custom-label">ELECTRIC</label>
+                  </div>
+                  <div class="column">
+                     <input type="checkbox" id="psychic" value="psychic" class="checkbox-custom" checked>
+                     <label for="psychic" class="checkbox-custom-label">PSYCHIC</label>
+                  </div>
+                  <div class="column">
+                     <input type="checkbox" id="ice" value="ice" class="checkbox-custom" checked>
+                     <label for="ice" class="checkbox-custom-label">ICE</label>
+                  </div>
+                  <div class="column">
+                     <input type="checkbox" id="dragon" value="dragon" class="checkbox-custom" checked>
+                     <label for="dragon" class="checkbox-custom-label">DRAGON</label>
+                  </div>
+                  <div class="column">
+                     <input type="checkbox" id="dark" value="dark" class="checkbox-custom" checked>
+                     <label for="dark" class="checkbox-custom-label">DARK</label>
+                  </div>
+                  <div class="column">
+                     <input type="checkbox" id="fairy" value="fairy" class="checkbox-custom" checked>
+                     <label for="fairy" class="checkbox-custom-label">FAIRY</label>
+                  </div>
+               </div>          
+            </div>
+         </div>
+         <div class="five wide column">
+            <div class="field">
+               <div class="input-header">VERSION</div>
+               <select id="version" class="ui selection dropdown">
+                  <option value="all" selected>All Versions</option>
+                  <option value="redBlueYelDex">Red/Blue/Yellow</option>
+                  <option value="goldSilvCrysDex">Gold/Silver/Crystal</option>
+                  <option value="rubySappEmerDex">Ruby/Sapphire/Emerald</option>
+                  <option value="diaPearlDex">Diamond/Pearl</option>
+                  <option value="platDex">Platinum</option>
+                  <option value="heartSoulDex">HeartGold/SoulSilver</option>
+                  <option value="blackWhiteDex">Black/White</option>
+                  <option value="blackWhite2Dex">Black 2/White 2</option>
+                  <option value="omegaAlphaDex">Omega Ruby/Alpha Sapphire</option>
+                  <option value="Dex">X / Y</option>
+               </select>
+            </div>
+            <div class="input-radio">
+               <div class="radio-header">INCLUDE EVOLUTION BY TRADE?</div>
+               <div class="input-radio">
+                  <div class="ui radio checkbox">
+                     <input type="radio" id="noTrade" value="false" name="evolve">
+                     <label for="noTrade">No</label>
+                  </div>
+                  <div class="ui radio checkbox">
+                     <input type="radio" id="yesTrade" value="true" name="evolve" checked>
+                     <label for="yesTrade">Yes</label>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="four wide column">
+            <div>
+               <div class="input-header">SORT BY</div>
+               <select id="sort">
+                  <option value="id">ID</option>
+                  <option value="a-z">Name</option>
+               </select>
+            </div>
+            <button type="button" id="filter-submit" class="ui gray invert button">Reload</button>
+         </div>
       </div>
-      <div>
-         <div>VERSION</div>
-         <select id="version">
-            <option value="all" selected>All Versions</option>
-            <option value="redBlueYelDex">Red/Blue/Yellow</option>
-            <option value="goldSilvCrysDex">Gold/Silver/Crystal</option>
-            <option value="rubySappEmerDex">Ruby/Sapphire/Emerald</option>
-            <option value="diaPearlDex">Diamond/Pearl</option>
-            <option value="platDex">Platinum</option>
-            <option value="heartSoulDex">HeartGold/SoulSilver</option>
-            <option value="blackWhiteDex">Black/White</option>
-            <option value="blackWhite2Dex">Black 2/White 2</option>
-            <option value="omegaAlphaDex">Omega Ruby/Alpha Sapphire</option>
-            <option value="Dex">X / Y</option>
-         </select>
-      </div>
-      <div>
-         <div>INCLUDE POKEMON THAT EVOLVED BY TRADE</div>
-         <input type="radio" id="noTrade" value="false" name="evolve">
-         <label for="noTrade">No</label>
-         <input type="radio" id="yesTrade" value="true" name="evolve" checked>
-         <label for="yesTrade">Yes</label>
-      </div>
-      <div>
-         <div>SORT BY</div>
-         <select id="sort">
-            <option value="id">ID</option>
-            <option value="a-z">Name</option>
-         </select>
-      </div>
-      <button type="button" id="filter-submit">Reload</button>
    </form>   
 
    <!-- Creating ALL filtered pokemons' thumbnails -->
