@@ -266,8 +266,6 @@ div.input-header {
 .checkbox-custom:focus + .checkbox-custom-label {
  outline: 1px solid #ddd; 
 }
-/* dropdown */
-
 /* radio */
 div.radio-header {
    font-family: 'Roboto', sans-serif;
@@ -321,11 +319,20 @@ span {
    .two.column.ui.grid .team.column {
       padding : 0 0 1rem 0 !important;
    }
+   div.input-header {
+      font-size: 1rem;
+   }
    .analysis-table,
    .table-pokemon,
    .ui.grid>.row>.column.table-effect,
    .ui.grid.legend-section .row .column.legend-icon,
-   .ui.grid.legend-section .row>.column.table-description, 
+   .ui.grid.legend-section .row>.column.table-description,
+   .ui.attached.button,
+   .checkbox-custom, .checkbox-custom-label,
+   .ui.grid.form-contents,
+   .ui.radio.checkbox,
+   #filter-submit,
+   div.radio-header,
    .thumbnails .description {
       font-size: .75rem;
    }   
@@ -338,11 +345,20 @@ span {
       padding-left: 0;
       margin-left: -1.5rem;
    }
+   div.input-header {
+      font-size: 1.4rem;
+   }
    .analysis-table,
    .table-pokemon,
    .ui.grid>.row>.column.table-effect,
    .ui.grid.legend-section .row .column.legend-icon,
    .ui.grid.legend-section .row>.column.table-description, 
+   .ui.attached.button,
+   .checkbox-custom, .checkbox-custom-label,
+   .ui.grid.form-contents,
+   .ui.radio.checkbox,
+   #filter-submit,
+   div.radio-header,
    .thumbnails .description {
       font-size: 1.15rem;
    }
@@ -372,11 +388,20 @@ span {
    .container {
       margin: 3vh 1vw;
    }
+   div.input-header {
+      font-size: 1.6rem;
+   }
    .analysis-table,
    .table-pokemon,
    .ui.grid>.row>.column.table-effect,
    .ui.grid.legend-section .row .column.legend-icon,
-   .ui.grid.legend-section .row>.column.table-description, 
+   .ui.grid.legend-section .row>.column.table-description,
+   .ui.attached.button,
+   .checkbox-custom, .checkbox-custom-label,
+   .ui.grid.form-contents,
+   .ui.radio.checkbox,
+   #filter-submit,
+   div.radio-header, 
    .thumbnails .description {
       font-size: 1.3rem;
    }
