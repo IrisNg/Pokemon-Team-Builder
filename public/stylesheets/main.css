@@ -75,6 +75,14 @@ html {
 .details {
    color: white;
 }
+hr {
+   display: block;
+   height: .5px;
+   margin: 0 1rem;
+   width:100%;
+   border: 0;
+   border-top: .5px solid #ffffff;  
+ }
 .type-one,
 .type-two {
    text-align:center;
