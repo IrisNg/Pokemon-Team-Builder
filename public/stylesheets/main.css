@@ -21,6 +21,9 @@ html {
 .ui.grid.thumbnails {
    margin: 0;
 }
+.ui.grid.whole-team {
+   margin-bottom: 5rem;
+}
 /* Team alignment */
 .two.column.ui.grid .team.column:nth-child(odd) {
    padding: 0 .3rem 1rem 0;
@@ -46,7 +49,7 @@ html {
    letter-spacing: .03em;
    height: 1em;   
 }
-.chosen .description span{
+.chosen .description span {
    margin-right: .1rem;
    font-size: 1rem;
 }
@@ -61,14 +64,6 @@ html {
 /* Team member's type details */
 .team-member.ui.grid>.member-details.column {
    padding: .5rem 1rem .5rem .5rem;
-}
-hr {
-  display: block;
-  height: .5px;
-  margin: 0 1rem;
-  width:100%;
-  border: 0;
-  border-top: .5px solid #ffffff;  
 }
 .team-member.ui.grid .row {
    padding-top: 0;
@@ -101,8 +96,18 @@ hr {
    padding-left: 1rem;
    font-style: italic;
    font-weight: 400;
-   margin-top: 0;
-   margin-bottom: 0;
+   margin: 0;
+   display: block;
+   width: 100%;
+   
+}
+.details h5 i {
+   color: rgba(255,255,255, 0.9);
+   font-size: .8rem;
+   padding-right: 1rem;
+   float: right;
+   line-height: 1.2em;
+   margin-top: 2px;
 }
 .team p {
    font-size: 1.1rem;
@@ -117,10 +122,13 @@ hr {
    font-weight: 700;
    text-align: center;
 }
+.analysis-table>.ui.grid{
+   margin-top: 5rem;
+}
 .table-pokemon {
    border-radius: 2px;
    color:white;
-   margin: .4rem 1rem;
+   margin: .5rem 1rem;
    font-size: .95rem;
    line-height: 2em;
 }
@@ -135,20 +143,18 @@ hr {
 }
 /* Legend */
 .ui.grid>.table-title {
-   margin-top: 3rem;
    text-align: center;
    font-size: 2rem;
+   background-color: rgb(228, 228, 228);
+   padding: .55rem 0 .15rem 0;
+   margin: 0 1rem 0 1rem;
    letter-spacing: .05em;
-}
-hr.table-divider {
-   margin: 1rem 0;
-   width:100%;
-   height: 2px;
-   background-color: rgba(34, 34, 34, 0.2);
+   line-height: 2.7rem;
 }
 .ui.grid.legend-section {
    padding-left: 1.3rem;
-   margin: .5rem 0;
+   margin-top: 1rem;
+   padding-top: 2rem;
 }
 .ui.grid>.row>.column.table-effect {
    padding: 0 1em 0 0;
@@ -171,12 +177,17 @@ hr.table-divider {
    padding-left: 1em;
    margin-top: -.1rem;
  } 
- .column.table-description i{
+ .column.table-description i {
    margin-left: .3rem;
    color: dimgray;
  }
  
-/* actual table */
+/* main table */
+.ui.grid.analysis-table {
+   border-top: 1.5px solid rgb(228, 228, 228);
+   margin-top: 3rem;
+   padding: 1.5rem 0 1.8rem 0;
+}
 .ui.grid.analysis-table>.row.table-header {
    padding-bottom: 0;
 }
@@ -185,24 +196,76 @@ hr.table-divider {
    padding-right: 0;
 }
 .column .table-type {
-   background-color: rgba(34, 34, 34, 0.2);
+   background-color: rgb(228, 228, 228);
    line-height: 1.5em;
 }
-/* Don't touch on top */
+/* analysis table summary */
+.table-summary {
+   border-top: 1.5px solid rgb(228, 228, 228);
+   padding: 1.5rem 0 2rem 0;
+}
+.table-summary .chat-box {
+   font-family: 'Press Start 2P', cursive;
+   font-weight: 400;
+   text-align: justify;
+   font-size: .9rem;
+   line-height: 1.7em;
+   letter-spacing: -0.02em;
+   margin: 2rem 0;
+   padding: 1.5rem 1rem .5rem 1rem;
+   border-radius: 10px;
+   box-shadow: 5px 6px rgba(0,0,0,.7), 4px 5px rgba(0,0,0,.7) inset;
+   width: 45%;
+   position: relative;
+}
+.positive-chat-box {
+   border: 6px solid mediumseagreen;
+   color: darkgreen;
+   left: 10%;
+}
+.negative-chat-box {
+   border: 6px solid crimson;
+   color: darkred;
+   direction: rtl;
+   left: 45%;
+}
+.doom-chat-box {
+   border: 6px solid gray;
+   color: black;
+   direction: rtl;
+   left: 45%;
+}
+@keyframes bob {
+	0%, 100% {
+    transform: translateY(3px);
+  }
+	50% {
+    transform: translateY(-2px);
+  }
+}
+.table-summary i.fas.fa-sort-down {
+   font-size: 1.6rem;
+   float: right;
+   animation: bob .8s infinite; 
+}
+/* Filter for pokedex */
 .filter-form {
    font-family: 'Roboto Condensed', sans-serif;
    letter-spacing: .03em;
 }
-.filter-header {
+.ui.form.filter-form .filter-header {
    font-family: 'Roboto Condensed', sans-serif;
-   margin-top: 3rem;
-   font-size: 1.5rem;
+   margin-bottom: 2rem;
+   font-size: 2rem;
    font-weight: 700;
    letter-spacing: .04em;
    text-align: center;
+   padding: .5rem 0 .2rem 0;
+   letter-spacing: .05em;
+   background-color: rgb(228, 228, 228);
 }
-hr.filter-divider {
-   margin-bottom: 3rem;
+.ui.grid.ui.grid.form-contents {
+   padding: 0 .5rem;
 }
 div.input-header {
    display: inline-block;
@@ -277,10 +340,10 @@ div.radio-header {
 div.input-radio {
    display: inline-block;
 }
-.ui.radio.checkbox:nth-of-type(2){
+.ui.radio.checkbox:nth-of-type(2) {
    padding-left: 2rem;
 }
-/* reload button */
+/* filter button */
 #filter-submit {
    font-family: 'Roboto Condensed', sans-serif;
    margin-top: 1.3rem;
@@ -289,7 +352,7 @@ div.input-radio {
 }
 /* don't touch below */
 .ui.grid.thumbnails {
-   margin-top: 2rem;
+   margin-top: 1.5rem;
 }
 .ui.grid.thumbnails > .column:not(.row) {
    padding-left: .4rem;
@@ -308,7 +371,12 @@ span {
 .pokemon-name {
    margin-top: -.3rem;
 }
-
+.hidden-summary {
+   display: none;
+}
+.hidden-filter {
+   display: none;
+}
 @media screen and (max-width: 991px) {
    html { 
       font-size: 2.05vw; 
@@ -327,6 +395,7 @@ span {
    .ui.grid>.row>.column.table-effect,
    .ui.grid.legend-section .row .column.legend-icon,
    .ui.grid.legend-section .row>.column.table-description,
+   .table-summary .chat-box,
    .ui.attached.button,
    .checkbox-custom, .checkbox-custom-label,
    .ui.grid.form-contents,
@@ -353,6 +422,7 @@ span {
    .ui.grid>.row>.column.table-effect,
    .ui.grid.legend-section .row .column.legend-icon,
    .ui.grid.legend-section .row>.column.table-description, 
+   
    .ui.attached.button,
    .checkbox-custom, .checkbox-custom-label,
    .ui.grid.form-contents,
@@ -361,6 +431,19 @@ span {
    div.radio-header,
    .thumbnails .description {
       font-size: 1.15rem;
+   }
+   .table-summary .chat-box {
+      font-size: 1rem;
+      width: 65%;
+   }
+   .positive-chat-box {
+      left: 0%;
+      border-width: 5px;
+   }
+   .negative-chat-box,
+   .doom-chat-box {
+      left: 35%;
+      border-width: 5px;
    }
 }
 /*Small devices (phones, 479px and down) */
@@ -406,4 +489,5 @@ span {
       font-size: 1.3rem;
    }
 } 
+
 

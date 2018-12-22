@@ -44,6 +44,10 @@ $('#filter-submit').click(function(e) {
    filterAndSort();
 });
 
+//Hide analysis table & analysis summary since there is no pokemon selected yet
+$('div.table-summary').hide();
+$('.analysis-table').hide();
+
 //Add eventListeners to all pokemon thumbnails that when triggered will add selected pokemon to the team
 function addThumbnailListener() {
    //Adding eventlisteners to each pokemon thumbnail so that we know which pokemon gets picked by user
@@ -52,7 +56,7 @@ function addThumbnailListener() {
       var emptySlot = selectedPokemons.indexOf(null);
       //If no vacated slot then add to new one
       if (emptySlot === -1 && selectedPokemons.length < 6) {
-         //Overwriting the context of "this"
+         //Overwriting the context of "this" - selecting <span> that is a child of 'this'
          //Id of the chosen pokemon will be added to the selectedPokemon array if it is not full
          selectedPokemons.push($('span', this).text());
       }
@@ -190,8 +194,9 @@ function addMember() {
       //Per team member's thumbnail
       if (selectedPokemons[i]) {
          //Add description and closing icon
-         $(`.chosen:eq(${i}) .description`).html(`<span>#${team[i].id}</span> ${team[i].name}`);
-         $(`.chosen:eq(${i}) .description`).append("<i class='close icon'></i>");
+         $(`.chosen:eq(${i}) .description`)
+            .html(`<span>#${team[i].id}</span> ${team[i].name}`)
+            .append("<i class='close icon'></i>");
          //Add pokemon image
          $(`.chosen:eq(${i}) img`).attr('src', team[i].image);
          //Add eventListener to each existing closing icon that will remove said team member when clicked
@@ -203,13 +208,13 @@ function addMember() {
             $(`.type-two:eq(${i})`).text(teamTypesEntries[i].type2.name);
          }
          //Adding super-effective icons
-         $(`.super-effective:eq(${i})`).text('super-effective against');
+         $(`.super-effective:eq(${i})`).html('super-effective against<i class="fas fa-fist-raised"></i>');
          $(`.super-effective-one:eq(${i})`).text(teamTypesEntries[i].type1.superEffective.join(' '));
          //Adding Not-very-effective icons
-         $(`.not-effective:eq(${i})`).text('not-very-effective against');
+         $(`.not-effective:eq(${i})`).html('not-very-effective against<i class="fas fa-heart-broken"></i>');
          $(`.not-effective-one:eq(${i})`).text(teamTypesEntries[i].type1.notEffective.join(' '));
          //Adding No-effect icons
-         $(`.no-effect:eq(${i})`).text('no-effect against');
+         $(`.no-effect:eq(${i})`).html('no-effect against<i class="fas fa-skull"></i>');
          $(`.no-effect-one:eq(${i})`).text(teamTypesEntries[i].type1.noEffect.join(' '));
          //Same for type 2, if it exists
          if (teamTypes[i].type2) {
@@ -221,8 +226,9 @@ function addMember() {
          $(`.team:eq(${i}) .segment`).css({ backgroundColor: teamTypesEntries[i].type1.color, border: 'none' });
          $(`.chosen:eq(${i})`).css('border', 'none');
          if (teamTypes[i].type2) {
-            $(`.type-two:eq(${i})`).addClass('type-icon');
-            $(`.type-two:eq(${i})`).css('color', teamTypesEntries[i].type2.color);
+            $(`.type-two:eq(${i})`)
+               .addClass('type-icon')
+               .css('color', teamTypesEntries[i].type2.color);
             $(`.team:eq(${i}) .segment`).css({
                backgroundImage: `linear-gradient(to bottom right, ${teamTypesEntries[i].type1.color},${
                   teamTypesEntries[i].type2.color
@@ -230,8 +236,9 @@ function addMember() {
                border: 'none'
             });
          }
-         $(`.type-one:eq(${i})`).addClass('type-icon');
-         $(`.type-one:eq(${i})`).css('color', teamTypesEntries[i].type1.color);
+         $(`.type-one:eq(${i})`)
+            .addClass('type-icon')
+            .css('color', teamTypesEntries[i].type1.color);
          $(`.chosen:eq(${i}) img`).css('margin-top', '0');
          $(`.chosen:eq(${i}) .description`).css('height', '1.7em');
       }
@@ -278,10 +285,14 @@ function analysisTable() {
    table = JSON.parse(JSON.stringify(protoTable));
 
    // //Remove previous existing rows and header
+   $('.analysis-table').hide();
    $('div.table-column').remove();
-
    //Only do the necessary calculations and display the Analysis Table when there is more than one pokemon
    if (selectedPokemons.length > 0) {
+      //Show this table only if there is pokemon selected
+      $('.analysis-table').show();
+
+      //This function adds selected pokemon names to the table object
       function addNameToTableType(effect) {
          //Add the pokemon's name to the type that it does super-effective/not-very-effective/no-effect damage to
          teamTypesEntries[i].type1[effect].forEach(toType => {
@@ -342,6 +353,8 @@ function analysisSummary() {
    //Remove any previous messages
    $('.table-summary').html('');
    $('.table-summary-line').html('');
+   $('div.table-summary').hide();
+
    //Finding the tableType that the team is the strongest against
    //Creating a temporary instance of the existing table variable in array form (to use the reduce method)
    var tempArray = [];
@@ -353,7 +366,9 @@ function analysisSummary() {
    //Display the 'very strong' message only if the team has more than 3 pokemons that are strong against this strongestAgainst-type
    if (strongestAgainst.superEffective.length > 3) {
       $('.table-summary').append(
-         `<div>Fantastic! Your team is very strong against ${strongestAgainst.typeName} type!</div>`
+         `<div class="chat-box positive-chat-box"><div">FANTASTIC! Your Pokémon team is VERY STRONG against ${
+            strongestAgainst.typeName
+         } type! <i class="fas fa-sort-down"></i></div></div>`
       );
    }
 
@@ -366,24 +381,26 @@ function analysisSummary() {
       if (table[tableType].notEffective.length - table[tableType].superEffective.length > 3) {
          //Display the analysis message on the summary section
          $('.table-summary').append(
-            `<div>Bad news! Your team is overwhelmingly weak to ${
+            `<div class="chat-box negative-chat-box"><div>BAD NEWS! Your Pokémon team is TERRIBLY WEAK to ${
                table[tableType].typeName
             } type! It is recommended that you switch out either ${strongestAgainst.superEffective.join(
                ' or '
-            )} to some ${recommended.join(' or ')} pokemon</div>`
+            )} to some ${recommended.join(' or ')} Pokémon <i class="fas fa-sort-down"></i></div></div>`
          );
       }
       //Do the same for no-Effect
       if (table[tableType].noEffect.length - table[tableType].superEffective.length > 1) {
          $('.table-summary').append(
-            `<div>DOOM news! Your Pokemons are practically doing no damage to ${
+            `<div class="chat-box doom-chat-box"><div>OH NO! Your Pokémons are practically doing NO DAMAGE to ${
                table[tableType].typeName
             } type! PLEASE switch out either ${strongestAgainst.superEffective.join(' or ')} to some ${recommended.join(
                ' or '
-            )} pokemon</div>`
+            )} Pokémon <i class="fas fa-sort-down"></i></div></div>`
          );
       }
    }
-
-   $('.table-summary-line').append('<hr class="table-divider">');
+   //Show analysis-summary only if there are messages to be shown
+   if ($('.table-summary').children().length > 0) {
+      $('div.table-summary').show();
+   }
 }
