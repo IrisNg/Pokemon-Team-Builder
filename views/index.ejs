@@ -6,13 +6,14 @@
 </div>   
 
 <div class="container">
+
    <div class="ui doubling two column grid whole-team">
-      <!-- Creating chosen pokemon team members -->
+      <!-- Create chosen pokemon team members -->
       <% for(var i=0; i<6; i++){ %>
          <div class="ui column team">
             <div class="ui segment">
                <div class="ui grid team-member">
-                  <!-- Creating chosen pokemon's card -->
+                  <!-- Create chosen pokemon's card -->
                   <div class="member-card center aligned five wide column">
                      <div class="ui card chosen">
                         <div class="image">
@@ -23,33 +24,33 @@
                         </div>
                      </div>
                   </div>
-                  <!-- Creating chosen pokemon's type details -->
-               <div class="member-details eleven wide column">
-                  <div class="ui grid details">
-                     <div class="main two column row">
-                        <div class="column"><div class="type-one"></div></div>
-                        <div class="column"><div class="type-two"></div></div>
-                     </div>
-                     <div class="effect row"><h5 class="header super-effective"></h5><hr></div>
-                     <div class="two column row">
-                        <div class="column"><p class="super-effective-one"></p></div>
-                        <div class="column"><p class="super-effective-two"></p></div>  
-                     </div>
-                     <div class="effect row"><h5 class="header not-effective"></h5><hr></div>
-                     <div class="two column row">
-                        <div class="column"><p class="not-effective-one"></p></div>
-                        <div class="column"><p class="not-effective-two"></p></div>
-                     </div>
-                     <div class="effect row"><h5 class="header no-effect"></h5><hr></div>
-                     <div class="two column row">
-                        <div class="column"><p class="no-effect-one"></p></div>
-                        <div class="column"><p class="no-effect-two"></p></div>
+                  <!-- Create chosen pokemon's type details -->
+                  <div class="member-details eleven wide column">
+                     <div class="ui grid details">
+                        <div class="main two column row">
+                           <div class="column"><div class="type-one"></div></div>
+                           <div class="column"><div class="type-two"></div></div>
+                        </div>
+                        <div class="effect row"><h5 class="header super-effective"></h5><hr></div>
+                        <div class="two column row">
+                           <div class="column"><p class="super-effective-one"></p></div>
+                           <div class="column"><p class="super-effective-two"></p></div>  
+                        </div>
+                        <div class="effect row"><h5 class="header not-effective"></h5><hr></div>
+                        <div class="two column row">
+                           <div class="column"><p class="not-effective-one"></p></div>
+                           <div class="column"><p class="not-effective-two"></p></div>
+                        </div>
+                        <div class="effect row"><h5 class="header no-effect"></h5><hr></div>
+                        <div class="two column row">
+                           <div class="column"><p class="no-effect-one"></p></div>
+                           <div class="column"><p class="no-effect-two"></p></div>
+                        </div>
                      </div>
                   </div>
                </div>
             </div>
          </div>
-      </div>
       <% } %>
    </div>
 
@@ -135,6 +136,7 @@
       <h3 class="filter-header">POKÉDEX</h3>
       <div class="ui stackable grid form-contents">
          <div class="seven wide column checkbox-column">
+            <!-- Types Checkboxes -->
             <div id="types-checkbox">
                <div class="input-header">
                   TYPES
@@ -218,9 +220,10 @@
             </div>
          </div>
          <div class="five wide column">
+            <!-- Version Drop-down -->
             <div class="field">
                <div class="input-header">VERSION</div>
-               <select id="version" class="ui selection dropdown">
+               <select id="version">
                   <option value="all" selected>All Versions</option>
                   <option value="redBlueYelDex">Red/Blue/Yellow</option>
                   <option value="goldSilvCrysDex">Gold/Silver/Crystal</option>
@@ -234,6 +237,7 @@
                   <option value="Dex">X / Y</option>
                </select>
             </div>
+            <!-- Evolve by Trade radio -->
             <div class="input-radio">
                <div class="radio-header">INCLUDE EVOLUTION BY TRADE?</div>
                <div class="input-radio">
@@ -249,6 +253,7 @@
             </div>
          </div>
          <div class="four wide column">
+            <!-- Sort-by drop-down -->
             <div>
                <div class="input-header">SORT BY</div>
                <select id="sort">
@@ -256,33 +261,37 @@
                   <option value="a-z">Name</option>
                </select>
             </div>
+            <!-- Filter button -->
             <button type="button" id="filter-submit" class="ui gray button">FILTER</button>
          </div>
       </div>
    </form>   
 
-   <!-- Creating ALL filtered pokemons' thumbnails -->
+   <!-- Create ALL filtered pokemons' thumbnails -->
    <div class="ui eight column doubling centered grid thumbnails">
       <% nPokedex.forEach( pokemon => { %>
-      <div class="center aligned column">
-         <div class="ui card thumbnail">
-            <div class="image"><img src="<%= pokemon.image %>" /></div>
-            <div class="description">
-               <strong>#</strong><span><%= pokemon.id %></span>
-               <div class="pokemon-name"><%= pokemon.name %></div>
+         <div class="center aligned column">
+            <div class="ui card thumbnail">
+               <div class="image">
+                  <img src="<%= pokemon.image %>" />
+               </div>
+               <div class="description">
+                  <strong>#</strong><span><%= pokemon.id %></span>
+                  <div class="pokemon-name"><%= pokemon.name %></div>
+               </div>
             </div>
          </div>
-      </div>
       <% }) %>
    </div>
 </div>
 
 <script>
-   //Converting ejs variables to js variables and passing into the external js script file
+   //Convert EJS variables to JS variables and pass into the external JS script file
    var nPokedex = <%- JSON.stringify(nPokedex) %>;
    var types = <%- JSON.stringify(types) %>;
    var protoTable = <%- JSON.stringify(table) %>;
 </script>
+<!-- External Javascript File -->
 <script type="text/javascript" src="/js/main.js"></script>
 
 <% include ./partials/footer %>

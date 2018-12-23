@@ -135,14 +135,14 @@ function filterPokedex() {
       $('.thumbnails').append(`
         <div class='center aligned column'>
             <div class='ui card thumbnail'>
-                <div class='image'><img src='${pokemon.image}' /></div>
-                <div class='description'>
-                    <strong>#</strong><span>${pokemon.id}</span>
-                    <div class='pokemon-name'>${pokemon.name}</div>
-                </div>
+               <div class='image'><img src='${pokemon.image}' /></div>
+               <div class='description'>
+                  <strong>#</strong><span>${pokemon.id}</span>
+                  <div class='pokemon-name'>${pokemon.name}</div>
+               </div>
             </div>
-        </div>
-    `);
+         </div>
+      `);
    });
    //Add back in the event handlers for clicking the thumbnails
    addThumbnailListener();
@@ -191,7 +191,7 @@ function conversionsAndCalculations() {
 //Make the selected pokemons show up as thumbnails
 function addMember() {
    for (var i = 0; i < 6; i++) {
-      //Per team member's thumbnail
+      //Per team member
       if (selectedPokemons[i]) {
          //Add description and closing icon
          $(`.chosen:eq(${i}) .description`)
@@ -366,9 +366,12 @@ function analysisSummary() {
    //Display the 'very strong' message only if the team has more than 3 pokemons that are strong against this strongestAgainst-type
    if (strongestAgainst.superEffective.length > 3) {
       $('.table-summary').append(
-         `<div class="chat-box positive-chat-box"><div">FANTASTIC! Your Pokémon team is VERY STRONG against ${
-            strongestAgainst.typeName
-         } type! <i class="fas fa-sort-down"></i></div></div>`
+         `<div class="chat-box positive-chat-box">
+            <div>
+               BRAVO POKÉMON MASTER! Your Pokémon team is beating ${strongestAgainst.typeName} type to a pulp!! 
+                <i class="fas fa-sort-down"></i>
+            </div>
+         </div>`
       );
    }
 
@@ -378,24 +381,45 @@ function analysisSummary() {
       var recommended = types
          .filter(typeEntry => typeEntry.superEffective.includes(table[tableType].typeName))
          .map(entry => entry.name);
-      if (table[tableType].notEffective.length - table[tableType].superEffective.length > 3) {
+      //Strong against message
+      if (table[tableType].superEffective.length > 3 && table[tableType].typeName !== strongestAgainst.typeName) {
+         $('.table-summary').append(
+            `<div class="chat-box positive-chat-box">
+               <div>
+                  FANTASTIC! Your Pokémon team is strong against ${table[tableType].typeName} type! 
+                   <i class="fas fa-sort-down"></i>
+               </div>
+            </div>`
+         );
+      }
+      //Weak against message
+      if (
+         table[tableType].notEffective.length - table[tableType].superEffective.length > 3 ||
+         (table[tableType].notEffective.length > 1 && table[tableType].superEffective.length < 1)
+      ) {
          //Display the analysis message on the summary section
          $('.table-summary').append(
-            `<div class="chat-box negative-chat-box"><div>BAD NEWS! Your Pokémon team is TERRIBLY WEAK to ${
-               table[tableType].typeName
-            } type! It is recommended that you switch out either ${strongestAgainst.superEffective.join(
-               ' or '
-            )} to some ${recommended.join(' or ')} Pokémon <i class="fas fa-sort-down"></i></div></div>`
+            `<div class="chat-box negative-chat-box">
+               <div>
+                  BAD NEWS! Your Pokémon team is TERRIBLY WEAK to ${table[tableType].typeName} type! 
+                  It is recommended that you switch out either ${strongestAgainst.superEffective.join(', ')} 
+                  to some ${recommended.join(', ')} Pokémon 
+                  <i class="fas fa-sort-down"></i>
+               </div>
+            </div>`
          );
       }
       //Do the same for no-Effect
       if (table[tableType].noEffect.length - table[tableType].superEffective.length > 1) {
          $('.table-summary').append(
-            `<div class="chat-box doom-chat-box"><div>OH NO! Your Pokémons are practically doing NO DAMAGE to ${
-               table[tableType].typeName
-            } type! PLEASE switch out either ${strongestAgainst.superEffective.join(' or ')} to some ${recommended.join(
-               ' or '
-            )} Pokémon <i class="fas fa-sort-down"></i></div></div>`
+            `<div class="chat-box doom-chat-box">
+               <div>
+                  OH NO! Your Pokémons are practically doing NO DAMAGE to ${table[tableType].typeName} type! 
+                  PLEASE switch out either ${strongestAgainst.superEffective.join(', ')} to some 
+                  ${recommended.join(', ')} Pokémon 
+                  <i class="fas fa-sort-down"></i>
+               </div>
+            </div>`
          );
       }
    }

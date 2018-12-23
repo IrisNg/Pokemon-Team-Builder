@@ -75,14 +75,6 @@ html {
 .details {
    color: white;
 }
-hr {
-   display: block;
-   height: .5px;
-   margin: 0 1rem;
-   width:100%;
-   border: 0;
-   border-top: .5px solid #ffffff;  
- }
 .type-one,
 .type-two {
    text-align:center;
@@ -107,7 +99,6 @@ hr {
    margin: 0;
    display: block;
    width: 100%;
-   
 }
 .details h5 i {
    color: rgba(255,255,255, 0.9);
@@ -117,6 +108,14 @@ hr {
    line-height: 1.2em;
    margin-top: 2px;
 }
+hr {
+   display: block;
+   height: .5px;
+   margin: 0 1rem;
+   width:100%;
+   border: 0;
+   border-top: .5px solid #ffffff;  
+ }
 .team p {
    font-size: 1.1rem;
    font-family: 'Roboto Condensed', sans-serif;
@@ -187,9 +186,16 @@ hr {
  } 
  .column.table-description i {
    margin-left: .3rem;
-   color: dimgray;
  }
- 
+ .column.table-description i.fa-fist-raised {
+    color: mediumseagreen;
+ }
+ .column.table-description i.fa-heart-broken {
+   color: crimson;
+}
+ .column.table-description i.fa-skull {
+   color: dimgray;
+}
 /* main table */
 .ui.grid.analysis-table {
    border-top: 1.5px solid rgb(228, 228, 228);
@@ -282,6 +288,7 @@ div.input-header {
    line-height: 1.7rem;
    margin: 0 0 1rem .1rem;
 }
+/* Checkboxes styling */
 .ui.attached.button {
    font-family: 'Roboto', sans-serif;
    display: inline-block;
@@ -294,7 +301,6 @@ div.input-header {
 .ui.left.attached.button {
    margin-left: 2rem;
 }
-/* Checkboxes styling */
 .ui.grid.checkbox-contents {
    margin: 0;
 }
@@ -358,7 +364,7 @@ div.input-radio {
    padding: .5rem;
    width: 100%;
 }
-/* don't touch below */
+/* Pokedex thumbnails */
 .ui.grid.thumbnails {
    margin-top: 1.5rem;
 }
@@ -379,12 +385,7 @@ span {
 .pokemon-name {
    margin-top: -.3rem;
 }
-.hidden-summary {
-   display: none;
-}
-.hidden-filter {
-   display: none;
-}
+/* Responsiveness */
 @media screen and (max-width: 991px) {
    html { 
       font-size: 2.05vw; 
@@ -430,7 +431,6 @@ span {
    .ui.grid>.row>.column.table-effect,
    .ui.grid.legend-section .row .column.legend-icon,
    .ui.grid.legend-section .row>.column.table-description, 
-   
    .ui.attached.button,
    .checkbox-custom, .checkbox-custom-label,
    .ui.grid.form-contents,

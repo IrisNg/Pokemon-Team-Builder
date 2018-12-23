@@ -1,0 +1,72 @@
+var nationalPokedex = [
+   { nPokedexEntry }, { nPokedexEntry } ... X-Number of pokemons you requested
+];
+
+var nPokedexEntry = {
+   "types": {
+      "type1": "poison",
+      "type2": "grass"
+   },
+   "versions": [
+      "redBlueYelDex",
+      "goldSilvCrysDex",
+      "heartSoulDex",
+      "xYDex"
+   ],
+   "_id": "5c10c0568a7be42b6573ef24",
+   "name": "ivysaur",
+   "id": 2,
+   "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
+   "evolveByTrade": false
+};
+
+var allGenDex = [
+   { dexName: 'redBlueYelDex', url: 2, dex: [{genId: 120, name:"bulbasaur"}, {...}, {...}] },
+   { dexName: 'goldSilvCrysDex', url: 3, dex: [{...}, {...}, {...}] },
+   { dexName: 'rubySappEmerDex', url: 4, dex: [] },
+   { dexName: 'diaPearlDex', url: 5, dex: [] },
+   { dexName: 'platDex', url: 6, dex: [] },
+   { dexName: 'heartSoulDex', url: 7, dex: [] },
+   { dexName: 'blackWhiteDex', url: 8, dex: [] },
+   { dexName: 'blackWhite2Dex', url: 9, dex: [] },
+   { dexName: 'omegaAlphaDex', url: 15, dex: [] },
+   { dexName: 'xYDex', url: 12, dex: [] }
+];
+
+
+nationalPokedex 
+https://pokeapi.co/api/v2/pokedex/1/
+//where 1 = pokemon's national pokedex id
+
+
+redBlueYelDex - Red/Blue/Yellow Kanto dex
+https://pokeapi.co/api/v2/pokedex/2/
+
+goldSilvCrysDex - Gold/Silver/Crystal Johto dex
+https://pokeapi.co/api/v2/pokedex/3/
+
+rubySappEmerDex - Ruby/Sapphire/Emerald Hoenn dex
+https://pokeapi.co/api/v2/pokedex/4/
+
+diaPearlDex - Diamond/Pearl Sinnoh dex
+https://pokeapi.co/api/v2/pokedex/5/
+
+platDex - Platinum Sinnoh dex
+https://pokeapi.co/api/v2/pokedex/6/
+
+heartSoulDex - HeartGold/SoulSilver Johto dex
+https://pokeapi.co/api/v2/pokedex/7/
+
+blackWhiteDex - Black/White Unova dex
+https://pokeapi.co/api/v2/pokedex/8/
+
+blackWhite2Dex - Black 2/White 2 Unova dex
+https://pokeapi.co/api/v2/pokedex/9/
+
+omegaAlphaDex - Omega Ruby/Alpha Sapphire Hoenn Dex
+https://pokeapi.co/api/v2/pokedex/15/
+
+xYDex - X / Y Kalos Dex
+https://pokeapi.co/api/v2/pokedex/12/
+https://pokeapi.co/api/v2/pokedex/13/
+https://pokeapi.co/api/v2/pokedex/14/
