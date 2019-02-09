@@ -403,7 +403,7 @@ function analysisSummary() {
                <div>
                   BAD NEWS! Your Pokémon team is TERRIBLY WEAK to ${table[tableType].typeName} type! 
                   It is recommended that you switch out either ${strongestAgainst.superEffective.join(', ')} 
-                  to some ${recommended.join(', ')} Pokémon 
+                  to some ${recommended.join(', ')} Pokémon! 
                   <i class="fas fa-sort-down"></i>
                </div>
             </div>`
@@ -416,7 +416,7 @@ function analysisSummary() {
                <div>
                   OH NO! Your Pokémons are practically doing NO DAMAGE to ${table[tableType].typeName} type! 
                   PLEASE switch out either ${strongestAgainst.superEffective.join(', ')} to some 
-                  ${recommended.join(', ')} Pokémon 
+                  ${recommended.join(', ')} Pokémon! 
                   <i class="fas fa-sort-down"></i>
                </div>
             </div>`
