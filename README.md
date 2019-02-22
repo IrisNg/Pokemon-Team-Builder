@@ -18,7 +18,7 @@ Think 'Rock Paper Scissors', but more intense and complex. 'Rock Paper Scissors'
 * Clickable and Selectable Pokémons - show more details when selected
 * Analysis Table - computed by cross referencing each chosen Pokémon's types with a Pokémon type chart [like this one](https://rankedboost.com/pokemon-lets-go/type-chart/) 
 * Analysis Summary - further boil down the analysis table into a summary message to indicate the Pokémon team's greatest weakness or strength 
-* Filter Bar - to only show Pokémons that meet a certain criteria (eg. by type, game version, trade evolution) or change the order they are sorted  
+* Filter Bar - to only show Pokémons that meet a certain criteria (eg. by type, game version, trade evolution) or change the order they are sorted by 
 
 ## Technologies Used
 
