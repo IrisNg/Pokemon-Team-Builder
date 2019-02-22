@@ -53,7 +53,8 @@ Think 'Rock Paper Scissors', but more intense and complex. 'Rock Paper Scissors'
 * Using JQuery selectors and methods the right way ('.parent()' '.children()' '.wrap()')
   - Visualize how to traverse through the DOM tree to select the element you want 
   - Binding to make sure clicking the close button on the 2nd Pokémon removes the correct 2nd Pokémon entry from the array, while maintaining the positioning of the rest of the Pokémon entries in the array -> the 3rd Pokémon entry should not shift forward to occupy the removed entry    
-* Customizing Semantic UI is really difficult, the nested grid system classes are very difficult to select and modify using CSS, such as doing minor alignment using padding or changing the grid layout for mobile view.
+* Customizing Semantic UI is really difficult 
+  - Nested grid system classes are very difficult to select and modify using CSS, such as doing minor alignment using padding or changing the grid layout for mobile view.
   - Avoid Semantic unless the design of the page is really straight forward. Learn vanilla CSS properly, kids.
 * Consider scenarios in conditional statements very carefully. 
   - It is make or break! Understand when to use if-if, if-else if-else, and nested conditional statements.
