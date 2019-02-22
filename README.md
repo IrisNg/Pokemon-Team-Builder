@@ -31,7 +31,7 @@ Think 'Rock Paper Scissors', but more intense and complex. 'Rock Paper Scissors'
 * Node.JS & Express - making requests to Pokémon API
 * Mongo DB - for storing seed documents concocted from fetched Pokémon API data and chart to cross-reference types
 
-## Important files
+## Important Files
 * Server file - /app.js
 * EJS (html) file - /views/index.ejs
 * Javascript file - /public/js/main.js
