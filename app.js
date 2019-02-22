@@ -12,11 +12,9 @@ var express = require('express'),
    tableSeed = require('./models/TableSeed');
 
 // SETTING UP MONGOOSE
-var url = process.env.DATABASEURL || 'mongodb://helloUSER:hellothere1@ds031721.mlab.com:31721/pokemon_team_builder';
-mongoose.connect(
-   url,
-   { useNewUrlParser: true }
-);
+// var url = process.env.DATABASEURL || 'mongodb://helloUSER:hellothere1@ds031721.mlab.com:31721/pokemon_team_builder';
+var url = 'mongodb://localhost:27017/pokemon_team_app';
+mongoose.connect(url, { useNewUrlParser: true });
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
@@ -37,9 +35,9 @@ app.get('/', function(req, res) {
                   } else {
                      //Merging the two nationalPokedex entries (because making 649 requests one shot to the pokemon API server was too much to handle)
                      //All pokedex generations up to pokemon black2/white2 gen
-                     var nationalPokedex = foundPokedexes[1].nationalPokedex.concat(foundPokedexes[2].nationalPokedex);
+                     // var nationalPokedex = foundPokedexes[1].nationalPokedex.concat(foundPokedexes[2].nationalPokedex);
                      // For only first gen pokedex, use the following line of code to substitute the code line above
-                     // var { nationalPokedex } = foundPokedexes[0];
+                     var { nationalPokedex } = foundPokedexes[0];
                      //destructuring the types from the stored document
                      var { types } = foundChart[0];
                      //Converting the names of the pokemon to uppercase
@@ -59,16 +57,16 @@ app.get('/', function(req, res) {
 
 // TYPES CHART -------------------------------------------------------------------
 
-// app.get('/types/new', function(req, res) {
-//    Chart.create(typesSeed, function(err, createdChart) {
-//       if (err) {
-//          console.log(err);
-//       } else {
-//          console.log(createdChart);
-//       }
-//    });
-//    res.send('making');
-// });
+app.get('/types/new', function(req, res) {
+   Chart.create(typesSeed, function(err, createdChart) {
+      if (err) {
+         console.log(err);
+      } else {
+         console.log(createdChart);
+      }
+   });
+   res.send('making');
+});
 
 app.get('/types', function(req, res) {
    Chart.find({}, function(err, foundChart) {
@@ -81,16 +79,16 @@ app.get('/types', function(req, res) {
 });
 // TABLE PROTOTYPE ---------------------------------------------------------------
 
-// app.get('/table/new', function(req, res) {
-//    Table.create(tableSeed, function(err, createdTable) {
-//       if (err) {
-//          console.log(err);
-//       } else {
-//          console.log(createdTable);
-//       }
-//    });
-//    res.send('making table');
-// });
+app.get('/table/new', function(req, res) {
+   Table.create(tableSeed, function(err, createdTable) {
+      if (err) {
+         console.log(err);
+      } else {
+         console.log(createdTable);
+      }
+   });
+   res.send('making table');
+});
 
 app.get('/table', function(req, res) {
    Table.find({}, function(err, foundTable) {
@@ -194,7 +192,7 @@ app.get('/generate', function(req, res) {
    //Number of times 'for' loop runs will be the number of pokemons' info retrieved from the api
    //Example - k <= 151 will be retrieving 151 pokemon! the entire first gen pokedex
    // k <= 493 will retrieve pokemons up to pokemon platinum generation (not including pokemon black2/white2 pokemon X & Y and sun & moon)
-   for (var k = 1; k <= 493; k++) {
+   for (var k = 1; k <= 151; k++) {
       requestPokemon(k);
    }
    //executing the function to get back a list of pokemons that evolved by trade
@@ -230,12 +228,14 @@ app.get('/generate', function(req, res) {
       //should get back the number of pokemons you requested
       console.log(nationalPokedex.length);
 
-      // // Adding to database (JUST ONCE)
-      // Pokedex.create({ nationalPokedex: nationalPokedex }, function(err, createdDex) {
-      //    if (err) {
-      //       console.log(err);
-      //    }
-      // });
+      // Adding to database (JUST ONCE)
+      Pokedex.create({ nationalPokedex: nationalPokedex }, function(err, createdDex) {
+         if (err) {
+            console.log(err);
+         } else {
+            console.log('Pokedex successfully created!');
+         }
+      });
 
       res.send(nationalPokedex);
       //...Assuming 70 seconds is enough to finish making 493 api requests to the pokemon API (depends on your internet speed)
