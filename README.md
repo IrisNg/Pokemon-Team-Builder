@@ -41,25 +41,25 @@ Think 'Rock Paper Scissors', but more intense and complex. 'Rock Paper Scissors'
 ## Struggle Zones (AKA challenges that made me got smacked around by the technologies I used)
 
 * Looping hundreds of API calls and performing a crud operation at the end of the loop 
-	Used setTimeout here because my knowledge on the topic of asynchronous Javascript was weak. 
-	Possible solutions include using for...of loop, async await, or promises. 
+  - Used setTimeout here because my knowledge on the topic of asynchronous Javascript was weak. 
+  - Possible solutions include using for...of loop, async await, or promises. 
 * Parse data from server-side to ejs and into the imported javascript file
 * Plan FAR ahead on how to organize data structures in a coherent manner so that the values inside can be extracted appropriately 
-	Use array for data that needs to be iterated over and object to call a value by its key. Clear enough logic, but when there is alot of cross referencing of values from various variables happening it turned into a mess very quickly (i.e. using for...in to loop through object keys) 
-	Please refer to evidence /reference/MainJS data structure reference.txt to see how complicated nesting of multiple data structures became.
+  - Use array for data that needs to be iterated over and object to call a value by its key. Clear enough logic, but when there is alot of cross referencing of values from various variables happening it turned into a mess very quickly (i.e. using for...in to loop through object keys) 
+  - Please refer to evidence /reference/MainJS data structure reference.txt to see how complicated nesting of multiple data structures became.
 * Extracting above mentioned data structures into table form 
-	Different algorithm has to be used when displaying the data using html table or using semantic UI's grid system.
+  - Different algorithm has to be used when displaying the data using html table or using semantic UI's grid system.
 * Javascript methods including ES2015 (filter, map, sort, forEach, for ...in, reduce, join, for loop, some ) are immensely helpful!
 * Using JQuery selectors and methods the right way ('.parent()' '.children()' '.wrap()')
-	Visualize how to traverse through the DOM tree to select the element you want 
-	Binding to make sure clicking the close button on the 2nd Pokémon removes the correct 2nd Pokémon entry from the array, while maintaining the positioning of the rest of the Pokémon entries in the array -> the 3rd Pokémon entry should not shift forward to occupy the removed entry    
+  - Visualize how to traverse through the DOM tree to select the element you want 
+  - Binding to make sure clicking the close button on the 2nd Pokémon removes the correct 2nd Pokémon entry from the array, while maintaining the positioning of the rest of the Pokémon entries in the array -> the 3rd Pokémon entry should not shift forward to occupy the removed entry    
 * Customizing Semantic UI is really difficult, the nested grid system classes are very difficult to select and modify using CSS, such as doing minor alignment using padding or changing the grid layout for mobile view.
-	Avoid Semantic unless the design of the page is really straight forward. Learn vanilla CSS properly, kids.
+  - Avoid Semantic unless the design of the page is really straight forward. Learn vanilla CSS properly, kids.
 * Consider scenarios in conditional statements very carefully. 
-	It is make or break! Understand when to use if-if, if-else if-else, and nested conditional statements.
+  - It is make or break! Understand when to use if-if, if-else if-else, and nested conditional statements.
 * Deep copying vs Referencing 
 * Input checkboxes, radio buttons, dropdowns 
-	using the values inputted in Javascript with DOM 
+  - Using the values inputted in Javascript with DOM 
 * Web responsiveness
 
 ## Installation Instructions
