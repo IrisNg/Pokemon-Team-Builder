@@ -35,9 +35,9 @@ app.get('/', function(req, res) {
                   } else {
                      //Merging the two nationalPokedex entries (because making 649 requests one shot to the pokemon API server was too much to handle)
                      //All pokedex generations up to pokemon black2/white2 gen
-                     // var nationalPokedex = foundPokedexes[1].nationalPokedex.concat(foundPokedexes[2].nationalPokedex);
+                     var nationalPokedex = foundPokedexes[1].nationalPokedex.concat(foundPokedexes[2].nationalPokedex);
                      // For only first gen pokedex, use the following line of code to substitute the code line above
-                     var { nationalPokedex } = foundPokedexes[0];
+                     // var { nationalPokedex } = foundPokedexes[0];
                      //destructuring the types from the stored document
                      var { types } = foundChart[0];
                      //Converting the names of the pokemon to uppercase
