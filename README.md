@@ -39,7 +39,8 @@ Think 'Rock Paper Scissors', but more intense and complex. 'Rock Paper Scissors'
 * Reference for the various data structures used - /reference/MainJS data structure reference.txt
 
 ## Struggle like a Magikarp
-![struggle](https://media1.tenor.com/images/5bae032b65f1da83c0f9580a580e6b79/tenor.gif?itemid=5536400){:height="50%" width="50%"}
+<img src="https://media1.tenor.com/images/5bae032b65f1da83c0f9580a580e6b79/tenor.gif?itemid=5536400" width="100" height="100">
+
 * Looping hundreds of API calls and performing a crud operation at the end of the loop 
   - Used setTimeout here because my knowledge on the topic of asynchronous Javascript was weak. 
   - Possible solutions include using for...of loop, async await, or promises. 
