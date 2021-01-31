@@ -12,12 +12,8 @@ var express = require('express'),
    tableSeed = require('./models/TableSeed');
 
 // SETTING UP MONGOOSE
-// var url = process.env.DATABASEURL || 'mongodb://helloUSER:hellothere1@ds031721.mlab.com:31721/pokemon_team_builder';
-// var url = 'mongodb://localhost:27017/pokemon_team_app';
-
-
-var url = "mongodb+srv://azuration:98206305@cluster0.qfrh9.mongodb.net/pokemonteambuilder?retryWrites=true&w=majority";
-mongoose.connect(url, { useNewUrlParser: true });
+var uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/pokemon_team_app';
+mongoose.connect(uri, { useNewUrlParser: true });
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
