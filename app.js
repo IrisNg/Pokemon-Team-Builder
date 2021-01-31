@@ -12,15 +12,20 @@ var express = require('express'),
    tableSeed = require('./models/TableSeed');
 
 // SETTING UP MONGOOSE
-var url = process.env.DATABASEURL || 'mongodb://helloUSER:hellothere1@ds031721.mlab.com:31721/pokemon_team_builder';
+// var url = process.env.DATABASEURL || 'mongodb://helloUSER:hellothere1@ds031721.mlab.com:31721/pokemon_team_builder';
 // var url = 'mongodb://localhost:27017/pokemon_team_app';
+
+
+var url = "mongodb+srv://azuration:98206305@cluster0.qfrh9.mongodb.net/pokemonteambuilder?retryWrites=true&w=majority";
 mongoose.connect(url, { useNewUrlParser: true });
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 
+
 // INDEX PAGE -------------------------------------------------------------------
 app.get('/', function(req, res) {
+
    Pokedex.find({}, function(err, foundPokedexes) {
       if (err) {
          console.log(err);
@@ -33,11 +38,8 @@ app.get('/', function(req, res) {
                   if (err) {
                      console.log(err);
                   } else {
-                     //Merging the two nationalPokedex entries (because making 649 requests one shot to the pokemon API server was too much to handle)
                      //All pokedex generations up to pokemon black2/white2 gen
-                     var nationalPokedex = foundPokedexes[1].nationalPokedex.concat(foundPokedexes[2].nationalPokedex);
-                     // For only first gen pokedex, use the following line of code to substitute the code line above
-                     // var { nationalPokedex } = foundPokedexes[0];
+                     var { nationalPokedex } = foundPokedexes[0];
                      //destructuring the types from the stored document
                      var { types } = foundChart[0];
                      //Converting the names of the pokemon to uppercase
@@ -77,6 +79,7 @@ app.get('/', function(req, res) {
 //       }
 //    });
 // });
+
 // // TABLE PROTOTYPE ---------------------------------------------------------------
 
 // app.get('/table/new', function(req, res) {
