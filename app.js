@@ -12,7 +12,7 @@ var express = require('express'),
    tableSeed = require('./models/TableSeed');
 
 // SETTING UP MONGOOSE
-var uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/pokemon_team_app';
+var uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/pokemon_team_builder';
 mongoose.connect(uri, { useNewUrlParser: true });
 
 app.set('view engine', 'ejs');
